@@ -1,11 +1,10 @@
 @font-face {
-  font-family: Roboto;
   font-style: normal;
 }
 
 .wrapper {
+  padding-bottom: 135px;
   position: relative;
-  height: 1024px;
   background-color: #000000;
 }
 .top-background {
@@ -19,9 +18,7 @@
   margin: 45px 0 22px 0;
 }
 .header-name {
-  width: 203px;
   height: 41px;
-  font-family: Roboto;
   font-weight: bold;
   font-size: 35px;
   color: white;
@@ -29,9 +26,9 @@
   align-items: flex-end;
   text-align: center;
 }
-.form-login {
+.form-register {
+  padding: 40px;
   width: 670px;
-  height: 596px;
   background: #1c1c1d;
   border-radius: 30px;
   align-items: center;
@@ -40,12 +37,10 @@
   flex-direction: column;
   margin-top: -110px;
 }
-.login-text > p {
-  margin-top: 40px;
-  margin-bottom: 54px;
+.register-text > p {
+  margin-bottom: 62px;
   font-style: normal;
   color: #ffffff;
-  font-family: Roboto;
   font-weight: bold;
   font-size: 32px;
   line-height: 37px;
@@ -62,12 +57,7 @@ div > input {
   margin-bottom: 20px;
 }
 
-::placeholder {
-  font-family: Roboto;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 18px;
-  line-height: 21px;
+::placeholder { 
   margin-left: 20px;
   color: #979797;
 }
@@ -85,13 +75,16 @@ div > input {
   cursor: pointer;
 }
 .btn-text {
-  font-family: Roboto;
   font-size: 16px;
   color: #ffffff;
 }
 .footer {
   color: #ffffff;
-  font-family: Roboto;
+}
+
+.footer > small {
+  font-size: 16px;
+  line-height: 19px;
 }
 .register {
   text-decoration: underline;
@@ -100,4 +93,42 @@ div > input {
 }
 .register:hover {
   cursor: pointer;
+}
+
+.eyeRegister {
+  position: absolute;
+  top: 15px;
+  right: 10px;
+}
+
+.eyeRegister:hover {
+  cursor: pointer;
+}
+
+.eyeslashRegister {
+  position: absolute;
+  top: 14px;
+  right: 10px;
+}
+.eyeslashRegister:hover {
+  cursor: pointer;
+}
+
+.errorsMessage { width:390px;
+  color: red;
+  margin: 0 0 10px 0;
+}
+
+.password-register {
+  position: relative;
+}
+.passwordconfirm-register {
+  position: relative;
+}
+.responseMessage {
+  width: 390px;
+  text-align: center;
+  margin-bottom: 10px;
+  color: red;
+  margin: 0;
 }
