@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import { Link, useHistory } from "react-router-dom";
 import depositIcon from "../../assets/images/deposit.png";
 import eyeIcon from "../../assets/images/eye.png";
-import eyeSlashIcon from "../../assets/images/eyeSlash.png";
+import eyeSlashIcon from "../../assets/images/eyeslash.png";
 import "./styleRegister.css";
 export default function Register() {
   const { register, handleSubmit, errors, watch } = useForm();

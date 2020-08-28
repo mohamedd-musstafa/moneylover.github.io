@@ -1,0 +1,32 @@
+[33mcommit 78d46e4afd917f7868495b3bb1dfdff2ed6626dc[m[33m ([m[1;36mHEAD -> [m[1;32mfeature/login[m[33m, [m[1;31morigin/develop[m[33m, [m[1;32mdevelop[m[33m)[m
+Merge: 9e5e487 e2110c0
+Author: mohamedd-musstafa <50951843+mohamedd-musstafa@users.noreply.github.com>
+Date:   Thu Aug 27 15:00:12 2020 +0700
+
+    Merge pull request #2 from mohamedd-musstafa/feature/register
+    
+    feature/register
+
+[33mcommit e2110c06ed9bb5731bbd1e931b335a97f250dd36[m[33m ([m[1;31morigin/feature/register[m[33m, [m[1;32mfeature/register[m[33m)[m
+Author: mustafa <mohameddmusstafa@gmail.com>
+Date:   Thu Aug 27 14:37:56 2020 +0700
+
+    complete function registation
+
+[33mcommit 01decf8f5e28c5fa29bc903710a29cc56f51df9f[m
+Author: mustafa <mohameddmusstafa@gmail.com>
+Date:   Mon Aug 24 17:18:20 2020 +0700
+
+    feature/register
+
+[33mcommit 9e5e487a3e255c19731f32b600c5ae9ff41ead59[m
+Author: mustafa <mohameddmusstafa@gmail.com>
+Date:   Mon Aug 24 14:09:57 2020 +0700
+
+    create a new branch develop
+
+[33mcommit fed12f1dfe06971cc9f4e4f638ef5e27a708df2b[m[33m ([m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmaster[m[33m)[m
+Author: mustafa <mohameddmusstafa@gmail.com>
+Date:   Fri Aug 21 10:05:18 2020 +0700
+
+    Initialize project using Create React App
