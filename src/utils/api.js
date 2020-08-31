@@ -1,20 +1,23 @@
 // import axios from "axios";
+// import * as config from "../Constants/config"
 
-// export const register = (data) => {
-//   axios
-//     .post("https://msi.center/2359/auth/v1.0/register", data)
-//     .then(function (response) {
-//       if (response.status == 200) {
-//         console.log("success", response);
-//         // handle success here
-//         history.push("/Login");
-//       }
-//     })
-//     .catch(function (error) {
-//       if (error.response) {
-//         console.log(error.response.data);
-//         console.log(error.response.status);
-//         console.log(error.response.headers);
-//       }
-//     });
-// };
+// export default function registerAPI(endpoint, method = "POST", body) {
+//     return (
+//         axios
+      
+//       ({
+//           method: method,
+//           url: `${config.API_URL}/${endpoint}`,
+//           data: body
+//       .catch(function (error) {
+//         if (error.response) {
+//         //   setErrorMessage(
+//         //     Array.isArray(error.response.data.message)
+//         //       ? error.response.data.message
+//         //       : [error.response.data.message]
+//         //   ); 
+//         console.log(error.response.data.message);
+//         }
+//       })})
+//     )
+// }

@@ -1,0 +1,246 @@
+.homepage {
+  background: #000000;
+  height: 1024px;
+}
+.header-bar {
+  padding: 0 72px;
+  display: flex;
+  background-color: #ffffff;
+  justify-content: space-between;
+  /* width: 1440px; */
+  height: 64px;
+  align-items: center;
+}
+.user {
+  display: flex;
+}
+.user-avatar {
+  width: 40px;
+  height: 40px;
+  margin-right: 20px;
+}
+.user-details {
+  width: 90px;
+  height: 35px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.user-name {
+  margin: 0 0 5px 0;
+  font-size: 12px;
+  line-height: 14px;
+  color: #000000;
+}
+.user-balance {
+  margin: 0;
+  font-family: Roboto;
+  font-weight: bold;
+  font-size: 14px;
+}
+.user-transactions-behavior {
+  display: flex;
+}
+
+.user-transactions-behavior > button:hover {
+  cursor: pointer;
+}
+
+/* .user-translation-behavior {
+  display: flex;
+  flex-direction: row;
+} */
+
+.view-today {
+  border: 0;
+  padding: 0;
+  align-items: center;
+  background-color: white;
+  margin-right: 20px;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 14px;
+  color: #3d753e;
+}
+.view-transactions {
+  border: 0;
+  padding: 0;
+  margin-right: 20px;
+  background-color: white;
+}
+.search-transactions {
+  border: 0;
+  padding: 0;
+  margin-right: 25px;
+  background-color: white;
+}
+.add-transaction {
+  background: #3d753e;
+  border-radius: 5px;
+  /* width: 150px; */
+  height: 32px;
+}
+.add-transaction-text {
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 16px;
+  display: flex;
+
+  color: #ffffff;
+}
+.transactions {
+  width: 900px;
+  height: 757px;
+  background: #1c1c1d;
+  box-shadow: 0px 3px 20px 5px rgba(0, 0, 0, 0.1);
+  border-radius: 20px;
+  margin: 0 auto;
+  margin-top: 50px;
+}
+.time-transactions {
+  width: 742px;
+  margin: 0 auto;
+  padding-top: 20px;
+  align-items: center;
+  display: flex;
+  padding-bottom: 20px;
+  justify-content: space-around;
+}
+.day-transactions-calendars {
+  width: 150px;
+  font-weight: bold;
+  font-size: 24px;
+  text-align: center;
+  color: #939393;
+}
+.last-month-transactions-calendars {
+  height: 28px;
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 28px;
+  color: #939393;
+}
+.this-month-transactions-calendars {
+  height: 28px;
+  font-weight: bold;
+  font-size: 24px;
+  color: #ffffff;
+}
+.line-1 {
+  /* width: 901px; */
+  margin: 0;
+  height: 0px;
+  border: 1px solid rgba(196, 196, 196, 0.5);
+  transform: rotate(-0.06deg);
+}
+.inflow-and-outflow {
+  padding: 50px;
+}
+.inflow {
+  margin-bottom: 40px;
+  display: flex;
+  justify-content: space-between;
+}
+.inflow-text {
+  font-size: 18px;
+  line-height: 21px;
+  color: #979797;
+}
+.inflow-number {
+  width: 99px;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 21px;
+  color: #039be5;
+}
+.outflow {
+  display: flex;
+  justify-content: space-between;
+}
+.outflow-text {
+  font-size: 18px;
+  line-height: 21px;
+  color: #979797;
+}
+.outflow-number {
+  width: 110px;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 21px;
+  color: #e55a5a;
+}
+.balance {
+  display: flex;
+  align-items: flex-end;
+  flex-direction: column;
+}
+.line-2 {
+  margin: 20px 0;
+  float: right;
+  width: 200px;
+  border: 1px solid #c4c4c4;
+  transform: rotate(-0.06deg);
+}
+.balance-after-flow {
+  width: 100px;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 21px;
+  color: #979797;
+}
+.rectangle {
+  background: rgba(147, 147, 147, 0.2);
+  margin: 0;
+  border: 0;
+  height: 30px;
+}
+.transactions-by-transactions {
+  padding: 25px 50px;
+}
+.transactions-by-category {
+  padding: 25px 50px;
+}
+.caterogy-transactions {
+  padding-bottom: 25px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.transactions-desc {
+  display: flex;
+  align-items: center;
+}
+.caterogy-transactions-biil {
+  width: 40px;
+  height: 40px;
+  margin-right: 25px;
+}
+.transactions-div {
+}
+.name-transactions {
+  width: 104px;
+  font-weight: 500;
+  color: #ffffff;
+}
+.count-transactions {
+  width: 80px;
+  height: 14px;
+  font-weight: 500;
+  font-size: 12px;
+  display: flex;
+  color: #979797;
+}
+.transactions-bill-number {
+  width: 99px;
+  font-weight: 500;
+  font-size: 18px;
+  color: #979797;
+}
+.line-3 {
+  margin: 0;
+  padding: 0;
+  border: 1px solid rgba(196, 196, 196, 0.5);
+  transform: rotate(-0.06deg);
+}

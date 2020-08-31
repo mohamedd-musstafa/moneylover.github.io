@@ -57,7 +57,7 @@ div > input {
   margin-bottom: 20px;
 }
 
-::placeholder { 
+::placeholder {
   margin-left: 20px;
   color: #979797;
 }
@@ -114,7 +114,8 @@ div > input {
   cursor: pointer;
 }
 
-.errorsMessage { width:390px;
+.errorsMessage {
+  width: 390px;
   color: red;
   margin: 0 0 10px 0;
 }

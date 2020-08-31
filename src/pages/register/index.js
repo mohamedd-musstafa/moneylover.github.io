@@ -6,6 +6,7 @@ import depositIcon from "../../assets/images/deposit.png";
 import eyeIcon from "../../assets/images/eye.png";
 import eyeSlashIcon from "../../assets/images/eyeslash.png";
 import "./styleRegister.css";
+
 export default function Register() {
   const { register, handleSubmit, errors, watch } = useForm();
   const history = useHistory();
@@ -15,11 +16,10 @@ export default function Register() {
   const password = useRef({});
   password.current = watch("password", "");
   const onSubmitRegister = (data) => {
-    // register(data);
     axios
       .post("https://msi.center/2359/auth/v1.0/register", data)
       .then(function (response) {
-        if (response.status == 200) {
+        if (response.status === 200) {
           console.log("success", response);
           // handle success here
           history.push("/Login");

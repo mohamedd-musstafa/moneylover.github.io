@@ -6,60 +6,47 @@ import depositIcon from "../../assets/images/deposit.png";
 import eyeIcon from "../../assets/images/eye.png";
 import eyeSlashIcon from "../../assets/images/eyeslash.png";
 import "./styleLogin.css";
+// import { useState } from "react";
 
 export default function Login() {
+  const { userData, setUserData } = useState({
+    firstName: "",
+    lastName: "",
+    id: "",
+    email: "",
+    balance: "",
+  });
   const history = useHistory();
   const { register, handleSubmit, errors } = useForm();
   const [errorsMessage, setErrorMessage] = useState([]);
-  let firstName = JSON.parse(localStorage.getItem("firstName"));
-  let lastName = JSON.parse(localStorage.getItem("lastName"));
-  let id = JSON.parse(localStorage.getItem("id"));
-  let balance = JSON.parse(localStorage.getItem("balance"));
-  let email = JSON.parse(localStorage.getItem("email"));
+  // let firstName = JSON.parse(localStorage.getItem("firstName"));
+  const token = localStorage.getItem("token");
 
   const onSubmitLogin = (data) => {
     // register(data);
     axios
       .post("https://msi.center/2359/auth/v1.0/login", data)
       .then(function (response) {
-        if (response.status == 200) {
+        if (response.status === 200) {
           console.log("success ", response);
+          // console.log(token);
           // handle success here
+          // setUserData((prevData) => ({
+          //   ...prevData,
+          //   firstName: response.data.user.firstName,
+          //   lastName: response.data.user.lastName,
+          //   id: response.data.user.id,
+          //   email: response.data.user.email,
+          //   balance: response.data.user.balance,
+          // }));
           localStorage.setItem("token", response.data.token.accessToken);
+          console.log(token);
           if (typeof localStorage.getItem("token") === "undefined") {
             console.log("Token does not exist");
           } else {
             console.log("The user has successfully logged in");
           }
-
-          localStorage.setItem(
-            "firstName",
-            JSON.stringify(response.data.user.firstName)
-          );
-          // console.log(firstName);
-
-          localStorage.setItem(
-            "lastName",
-            JSON.stringify(response.data.user.lastName)
-          );
-          // console.log(lastName);
-
-          localStorage.setItem("id", JSON.stringify(response.data.user.id));
-          // console.log(id);
-
-          localStorage.setItem(
-            "email",
-            JSON.stringify(response.data.user.email)
-          );
-          // console.log(email);
-
-          localStorage.setItem(
-            "balance",
-            JSON.stringify(response.data.user.balance)
-          );
-          // console.log(balance);
-
-          // history.push("/MainTransaction");
+          history.push("/MainTransaction");
         }
       })
       .catch(function (error) {
@@ -71,6 +58,7 @@ export default function Login() {
           );
         }
       });
+    // console.log(userData);
   };
 
   const [passwordShown, setPasswordShown] = useState(false);
