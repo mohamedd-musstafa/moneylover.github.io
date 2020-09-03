@@ -6,21 +6,29 @@ import depositIcon from "../../assets/images/deposit.png";
 import eyeIcon from "../../assets/images/eye.png";
 import eyeSlashIcon from "../../assets/images/eyeslash.png";
 import "./styleLogin.css";
-// import { useState } from "react";
 
 export default function Login() {
-  const { userData, setUserData } = useState({
-    firstName: "",
-    lastName: "",
-    id: "",
-    email: "",
-    balance: "",
-  });
+  // const { userData, setUserData } = useState({
+  //   firstName: "",
+  //   lastName: "",
+  //   id: "",
+  //   email: "",
+  //   balance: "",
+  // });
   const history = useHistory();
+
   const { register, handleSubmit, errors } = useForm();
   const [errorsMessage, setErrorMessage] = useState([]);
-  // let firstName = JSON.parse(localStorage.getItem("firstName"));
-  const token = localStorage.getItem("token");
+  // const firstName = localStorage.getItem("firstName");
+  // const lastName = localStorage.getItem("lastName");
+  // const id = localStorage.getItem("id");
+  // const email = localStorage.getItem("email");
+  // const balance = localStorage.getItem("balance");
+  // const token = localStorage.getItem("token");
+  const [passwordShown, setPasswordShown] = useState(false);
+  const togglePasswordVisibility = () => {
+    setPasswordShown(!passwordShown == true);
+  };
 
   const onSubmitLogin = (data) => {
     // register(data);
@@ -29,7 +37,6 @@ export default function Login() {
       .then(function (response) {
         if (response.status === 200) {
           console.log("success ", response);
-          // console.log(token);
           // handle success here
           // setUserData((prevData) => ({
           //   ...prevData,
@@ -40,12 +47,25 @@ export default function Login() {
           //   balance: response.data.user.balance,
           // }));
           localStorage.setItem("token", response.data.token.accessToken);
-          console.log(token);
-          if (typeof localStorage.getItem("token") === "undefined") {
-            console.log("Token does not exist");
-          } else {
-            console.log("The user has successfully logged in");
-          }
+          // console.log(token);
+          localStorage.setItem(
+            "firstName",
+            JSON.stringify(response.data.user.firstName),
+            "lastName",
+            JSON.stringify(response.data.user.lastName),
+            "id",
+            JSON.stringify(response.data.user.id),
+            "email",
+            JSON.stringify(response.data.user.email),
+            "balance",
+            JSON.stringify(response.data.user.balance)
+          );
+          // console.log(firstName);
+          // if (typeof localStorage.getItem("token") === "undefined") {
+          //   console.log("Token does not exist");
+          // } else {
+          //   console.log("The user has successfully logged in");
+          // }
           history.push("/MainTransaction");
         }
       })
@@ -58,13 +78,8 @@ export default function Login() {
           );
         }
       });
-    // console.log(userData);
   };
 
-  const [passwordShown, setPasswordShown] = useState(false);
-  const togglePasswordVisibility = () => {
-    setPasswordShown(passwordShown ? false : true);
-  };
   return (
     <div className="wrapper">
       <div className="top-background">

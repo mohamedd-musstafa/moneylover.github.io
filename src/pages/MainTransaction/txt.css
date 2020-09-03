@@ -1,0 +1,48 @@
+#app {
+  border-radius: 3px;
+  border: 1px solid #e5e5e5;
+  margin: 15px;
+  background-color: white;
+}
+
+.tab {
+  text-align: center;
+  padding: 25px 50px;
+  font-family: sans-serif;
+  color: #444;
+}
+
+ul.inline {
+  text-align: center;
+  padding: 0;
+  padding-top: 20px;
+  align-items: center;
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 0;
+}
+ul.inline li {
+  font-weight: bold;
+  font-size: 24px;
+  display: inline-block;
+  margin-left: 0;
+  padding: 10px;
+  /* border-bottom: 2px solid #eee; */
+  /* transition: all 0.5s; */
+  font-weight: 300;
+  cursor: pointer;
+  color: #aaa;
+}
+ul.inline li.selected {
+  border-bottom: 3px solid #3d753e;
+  color: #ffffff;
+}
+
+.day-transactions-calendars {
+  width: 150px;
+  font-weight: bold;
+  font-size: 24px;
+  text-align: center;
+  color: #939393;
+}
+

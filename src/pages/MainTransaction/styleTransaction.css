@@ -91,7 +91,6 @@
 }
 .transactions {
   width: 900px;
-  height: 757px;
   background: #1c1c1d;
   box-shadow: 0px 3px 20px 5px rgba(0, 0, 0, 0.1);
   border-radius: 20px;
@@ -107,7 +106,7 @@
   padding-bottom: 20px;
   justify-content: space-around;
 }
-.day-transactions-calendars {
+/* .day-transactions-calendars {
   width: 150px;
   font-weight: bold;
   font-size: 24px;
@@ -126,7 +125,7 @@
   font-weight: bold;
   font-size: 24px;
   color: #ffffff;
-}
+} */
 .line-1 {
   /* width: 901px; */
   margin: 0;
@@ -218,6 +217,7 @@
   margin-right: 25px;
 }
 .transactions-div {
+  height: 35px;
 }
 .name-transactions {
   width: 104px;
@@ -239,8 +239,75 @@
   color: #979797;
 }
 .line-3 {
-  margin: 0;
+  margin-bottom: 30px;
   padding: 0;
   border: 1px solid rgba(196, 196, 196, 0.5);
   transform: rotate(-0.06deg);
+}
+
+.day-transactions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.day-transactions-bill {
+  margin-right: 25px;
+  width: 39px;
+  font-weight: 500;
+  font-size: 34px;
+  line-height: 40px;
+  color: #ffffff;
+}
+.day-transactions {
+  font-weight: 900;
+  font-size: 12px;
+  color: #979797;
+}
+.desc-transactions {
+  color: #979797;
+}
+.transactions-bill-number-day {
+  width: 99px;
+  font-weight: 500;
+  font-size: 18px;
+  color: #e55a5a;
+}
+.tooltip {
+  position: relative;
+  display: inline-block;
+}
+
+.tooltip .tooltiptext {
+  background: #c4c4c4;
+  border-radius: 5px;
+  width: 94px;
+  visibility: hidden;
+  padding: 5px 0;
+  position: absolute;
+  top: 140%;
+  left: 69%;
+  margin-left: -60px;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 14px;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}
+.notransaction-display {
+  padding: 208px 350px;
+  flex-direction: column;
+  display: flex;
+}
+.notransaction {
+  width: 200px;
+}
+.notransaction-text {
+  text-align: center;
+  margin-top: 20px;
+  width: 200px;
+  font-weight: bold;
+  color: #939393;
 }
