@@ -14,9 +14,10 @@ export default function Login() {
   //   id: "",
   //   email: "",
   //   balance: "",
+  //   createdAt: "",
+  //   updatedAt: "",
   // });
   const history = useHistory();
-
   const { register, handleSubmit, errors } = useForm();
   const [errorsMessage, setErrorMessage] = useState([]);
   // const firstName = localStorage.getItem("firstName");
@@ -24,12 +25,13 @@ export default function Login() {
   // const id = localStorage.getItem("id");
   // const email = localStorage.getItem("email");
   // const balance = localStorage.getItem("balance");
+  // const createdAt = localStorage.getItem("createdAt");
+  // const updatedAt = localStorage.getItem("updatedAt");
   // const token = localStorage.getItem("token");
   const [passwordShown, setPasswordShown] = useState(false);
   const togglePasswordVisibility = () => {
-    setPasswordShown(!passwordShown == true);
+    setPasswordShown(!passwordShown === true);
   };
-
   const onSubmitLogin = (data) => {
     // register(data);
     axios
@@ -38,29 +40,24 @@ export default function Login() {
         if (response.status === 200) {
           console.log("success ", response);
           // handle success here
-          // setUserData((prevData) => ({
-          //   ...prevData,
-          //   firstName: response.data.user.firstName,
-          //   lastName: response.data.user.lastName,
-          //   id: response.data.user.id,
-          //   email: response.data.user.email,
-          //   balance: response.data.user.balance,
-          // }));
           localStorage.setItem("token", response.data.token.accessToken);
           // console.log(token);
           localStorage.setItem(
             "firstName",
-            JSON.stringify(response.data.user.firstName),
+            response.data.user.firstName,
             "lastName",
-            JSON.stringify(response.data.user.lastName),
+            response.data.user.lastName,
             "id",
-            JSON.stringify(response.data.user.id),
+            response.data.user.id,
             "email",
-            JSON.stringify(response.data.user.email),
+            response.data.user.email,
             "balance",
-            JSON.stringify(response.data.user.balance)
+            response.data.user.balance,
+            "createdAt",
+            response.data.user.createdAt,
+            "updatedAt",
+            response.data.user.updatedAt
           );
-          // console.log(firstName);
           // if (typeof localStorage.getItem("token") === "undefined") {
           //   console.log("Token does not exist");
           // } else {
@@ -79,14 +76,12 @@ export default function Login() {
         }
       });
   };
-
   return (
     <div className="wrapper">
       <div className="top-background">
-        <img src={depositIcon} className="deposit-icon"></img>
+        <img alt="depositIcon" src={depositIcon} className="deposit-icon"></img>
         <div className="header-name">Money Lover</div>
       </div>
-
       <div className="form-login">
         <div className="login-text">
           <p>Log In</p>
@@ -129,12 +124,12 @@ export default function Login() {
               <p className="errorsMessage">{errors.password.message}</p>
             )}
             <img
+              alt="eyeIcon"
               onClick={togglePasswordVisibility}
               className="eyeLogin"
               src={passwordShown ? eyeSlashIcon : eyeIcon}
             ></img>
           </div>
-
           <button
             type="submit"
             className="btn-login"
@@ -144,7 +139,6 @@ export default function Login() {
           </button>
         </form>
         {<p className="responseMessage">{errorsMessage}</p>}
-
         <div className="footer">
           <small>Don’t have an account?</small>
           <a className="register">

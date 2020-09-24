@@ -8,6 +8,12 @@ import eyeSlashIcon from "../../assets/images/eyeslash.png";
 import "./styleRegister.css";
 
 export default function Register() {
+  const togglePasswordVisibility = () => {
+    setPasswordShown(passwordShown ? false : true);
+  };
+  const toggleConfirmPasswordVisibility = () => {
+    setConfirmPasswordShown(confirmPasswordShown ? false : true);
+  };
   const { register, handleSubmit, errors, watch } = useForm();
   const history = useHistory();
   const [passwordShown, setPasswordShown] = useState(false);
@@ -35,17 +41,15 @@ export default function Register() {
         }
       });
   };
-  const togglePasswordVisibility = () => {
-    setPasswordShown(passwordShown ? false : true);
-  };
-  const toggleConfirmPasswordVisibility = () => {
-    setConfirmPasswordShown(confirmPasswordShown ? false : true);
-  };
 
   return (
     <div className="wrapper">
       <div className="top-background">
-        <img src={depositIcon} className="deposit-icon"></img>
+        <img
+          alt="Deposit Icon"
+          src={depositIcon}
+          className="deposit-icon"
+        ></img>
         <div className="header-name">Money Lover</div>
       </div>
 
@@ -120,6 +124,7 @@ export default function Register() {
               <p className="errorsMessage">{errors.password.message}</p>
             )}{" "}
             <img
+              alt="Eye Icon"
               onClick={togglePasswordVisibility}
               className="eyeRegister"
               src={passwordShown ? eyeSlashIcon : eyeIcon}
@@ -140,6 +145,7 @@ export default function Register() {
               <p className="errorsMessage">{errors.confirmPassword.message}</p>
             )}{" "}
             <img
+              alt="Eye Icon"
               onClick={toggleConfirmPasswordVisibility}
               className="eyeslashRegister"
               src={confirmPasswordShown ? eyeSlashIcon : eyeIcon}

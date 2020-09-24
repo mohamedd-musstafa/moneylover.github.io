@@ -1,6 +1,7 @@
 .homepage {
+  max-height: 100%;
   background: #000000;
-  height: 1024px;
+  /* height: 1024px; */
 }
 .header-bar {
   padding: 0 72px;
@@ -10,6 +11,11 @@
   /* width: 1440px; */
   height: 64px;
   align-items: center;
+  /* position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  z-index: 1; */
 }
 .user {
   display: flex;
@@ -47,11 +53,6 @@
   cursor: pointer;
 }
 
-/* .user-translation-behavior {
-  display: flex;
-  flex-direction: row;
-} */
-
 .view-today {
   border: 0;
   padding: 0;
@@ -78,7 +79,6 @@
 .add-transaction {
   background: #3d753e;
   border-radius: 5px;
-  /* width: 150px; */
   height: 32px;
 }
 .add-transaction-text {
@@ -106,35 +106,14 @@
   padding-bottom: 20px;
   justify-content: space-around;
 }
-/* .day-transactions-calendars {
-  width: 150px;
-  font-weight: bold;
-  font-size: 24px;
-  text-align: center;
-  color: #939393;
-}
-.last-month-transactions-calendars {
-  height: 28px;
-  font-weight: bold;
-  font-size: 24px;
-  line-height: 28px;
-  color: #939393;
-}
-.this-month-transactions-calendars {
-  height: 28px;
-  font-weight: bold;
-  font-size: 24px;
-  color: #ffffff;
-} */
 .line-1 {
-  /* width: 901px; */
   margin: 0;
   height: 0px;
   border: 1px solid rgba(196, 196, 196, 0.5);
   transform: rotate(-0.06deg);
 }
 .inflow-and-outflow {
-  padding: 50px;
+  padding: 25px 50px 50px 50px;
 }
 .inflow {
   margin-bottom: 40px;
@@ -147,7 +126,7 @@
   color: #979797;
 }
 .inflow-number {
-  width: 99px;
+  /* width: 99px; */
   font-weight: 500;
   font-size: 18px;
   line-height: 21px;
@@ -182,7 +161,7 @@
   transform: rotate(-0.06deg);
 }
 .balance-after-flow {
-  width: 100px;
+  /* width: 100px; */
   font-weight: 500;
   font-size: 18px;
   line-height: 21px;
@@ -200,7 +179,8 @@
 .transactions-by-category {
   padding: 25px 50px;
 }
-.caterogy-transactions {
+.category-transactions {
+  /* width: 623px; */
   padding-bottom: 25px;
   display: flex;
   justify-content: space-between;
@@ -233,7 +213,7 @@
   color: #979797;
 }
 .transactions-bill-number {
-  width: 99px;
+  /* width: 99px; */
   font-weight: 500;
   font-size: 18px;
   color: #979797;
@@ -246,9 +226,24 @@
 }
 
 .day-transactions {
+  overflow: hidden;
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
   align-items: center;
+}
+
+.transactions-random {
+  display: flex;
+  align-items: center;
+  width: 623px;
+  height: 90px;
+  justify-content: space-between;
+}
+
+.transactions-random:hover {
+  background: rgba(61, 117, 62, 0.2);
+  cursor: pointer;
 }
 
 .day-transactions-bill {
@@ -268,7 +263,7 @@
   color: #979797;
 }
 .transactions-bill-number-day {
-  width: 99px;
+  /* width: 99px; */
   font-weight: 500;
   font-size: 18px;
   color: #e55a5a;
@@ -281,7 +276,7 @@
 .tooltip .tooltiptext {
   background: #c4c4c4;
   border-radius: 5px;
-  width: 94px;
+  width: 111px;
   visibility: hidden;
   padding: 5px 0;
   position: absolute;
@@ -294,7 +289,17 @@
 }
 
 .tooltip:hover .tooltiptext {
+  outline: none;
   visibility: visible;
+}
+.view-today:focus {
+  outline: none;
+}
+.view-transactions:focus {
+  outline: none;
+}
+.search-transactions:focus {
+  outline: none;
 }
 .notransaction-display {
   padding: 208px 350px;

@@ -1,6 +1,4 @@
-@font-face {
-  font-style: normal;
-}
+/*  */
 
 .wrapper {
   padding-bottom: 135px;
@@ -45,16 +43,6 @@
   font-size: 32px;
   line-height: 37px;
   text-align: center;
-}
-div > input {
-  color: white;
-  padding: 0 20px;
-  border: 0;
-  width: 350px;
-  height: 50px;
-  background: #3a3a3b;
-  border-radius: 5px;
-  margin-bottom: 20px;
 }
 
 ::placeholder {
@@ -132,4 +120,29 @@ div > input {
   margin-bottom: 10px;
   color: red;
   margin: 0;
+}
+
+.firstname {
+  width: 350px;
+  height: 50px;
+}
+
+.lastname {
+  width: 350px;
+  height: 50px;
+}
+
+.email {
+  width: 350px;
+  height: 50px;
+}
+
+.password {
+  width: 350px;
+  height: 50px;
+}
+
+.confirm_password {
+  width: 350px;
+  height: 50px;
 }

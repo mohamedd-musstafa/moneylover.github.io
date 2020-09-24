@@ -1,0 +1,23 @@
+.btn-datepicker {
+  position: relative;
+}
+
+.left-arrow-icon2 {
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  bottom: 23%;
+  left: 38%;
+}
+
+input {
+  position: relative;
+}
+
+.label-note {
+  position: absolute;
+  left: 60.5%;
+  bottom: 25%;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.5);
+}

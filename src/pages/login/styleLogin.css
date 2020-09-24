@@ -1,10 +1,6 @@
-@font-face {
-  font-style: normal;
-}
-
 .wrapper {
   position: relative;
-  height: 1024px;
+  /* height: 1024px; */
   padding-bottom: 135px;
   background-color: #000000;
 }
@@ -28,7 +24,7 @@
   text-align: center;
 }
 .form-login {
-  padding: 40px;
+  padding: 35px;
   margin-top: 0px;
   width: 670px;
   background: #1c1c1d;
@@ -52,8 +48,6 @@ div > input {
   padding: 0 20px;
   color: white;
   border: 0;
-  width: 350px;
-  height: 50px;
   background: #3a3a3b;
   border-radius: 5px;
   margin-bottom: 20px;
@@ -133,4 +127,14 @@ div > p {
   margin-bottom: 10px;
   color: red;
   margin: 0;
+}
+
+.email {
+  width: 350px;
+  height: 50px;
+}
+
+.password {
+  width: 350px;
+  height: 50px;
 }

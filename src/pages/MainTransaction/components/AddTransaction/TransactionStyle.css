@@ -1,0 +1,419 @@
+.line {
+  margin-top: 15px;
+  /* margin: 0; */
+  margin-bottom: 30px;
+  width: 623px;
+  border: 1px solid rgba(196, 196, 196, 0.5);
+  transform: rotate(-0.06deg);
+}
+
+.custom-style {
+  /* margin-bottom: 30px; */
+  position: absolute;
+  top: 35%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 623px;
+  background: #1c1c1d;
+  border-radius: 20px;
+  box-shadow: 0px 3px 20px 5px rgba(0, 0, 0, 0.1);
+  padding: 30px 30px 30px 40px;
+}
+
+.top-wrap {
+  padding-bottom: 15px;
+  display: flex;
+  flex-direction: row;
+  text-align: center;
+}
+
+.text {
+  margin-right: 264px;
+  font-weight: bold;
+  font-size: 20px;
+  color: #ffffff;
+}
+
+.btn {
+  border: 0;
+  padding: 0;
+  background: #1c1c1d;
+}
+
+.btn:hover {
+  cursor: pointer;
+}
+
+.btn:focus {
+  outline: none;
+}
+
+.btn-text-cancel {
+  margin-right: 35px;
+  font-size: 20px;
+  color: #e93131;
+}
+
+.btn-text-add {
+  font-size: 20px;
+  color: #56c858;
+}
+
+.input-submit {
+  position: absolute;
+  top: 11%;
+  right: 7%;
+  border: 0;
+  padding: 0;
+  text-transform: uppercase;
+  background: #1c1c1d;
+  font-size: 20px;
+  color: #56c858;
+}
+
+.input-submit:hover {
+  cursor: pointer;
+}
+
+.input:hover {
+  cursor: pointer;
+}
+
+.content-wrap {
+  /* padding: 30px 30px 40px 30px; */
+  padding: 0;
+}
+
+.select-options-category {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.category {
+  margin-right: 50px;
+  margin-bottom: 30px;
+}
+
+.category-text {
+  margin: 5px 0 0 15px;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.category-text-display {
+  font-size: 12px;
+  padding-left: 60px;
+  padding-top: 10px;
+  color: #ffffff;
+}
+
+.btn-category {
+  border: 0;
+  padding: 0;
+  font-size: 18px;
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  width: 256px;
+  height: 56px;
+  background: rgba(196, 196, 196, 0.5);
+  border-radius: 5px;
+}
+
+.btn-category:hover {
+  cursor: pointer;
+}
+
+.btn-category:focus {
+  border-radius: 1px;
+  outline: #56c858 auto 0.5px;
+}
+
+.input-amount {
+  box-sizing: border-box;
+  color: #ffffff;
+  border: 0;
+  font-size: 18px;
+  padding: 15px;
+  width: 256px;
+  border-radius: 5px;
+  height: 56px;
+  background: rgba(196, 196, 196, 0.5);
+}
+
+.input-amount:focus {
+  border-radius: 1px;
+  outline: #56c858 auto 0.5px;
+}
+
+.btn-datepicker {
+  border: 0;
+  box-sizing: border-box;
+  padding: 15px;
+  font-size: 18px;
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  width: 256px;
+  height: 56px;
+  background: rgba(196, 196, 196, 0.5);
+  border-radius: 5px;
+}
+
+.btn-datepicker:hover {
+  cursor: pointer;
+}
+
+.btn-datepicker:focus {
+  border-radius: 1px;
+  outline: #56c858 auto 0.5px;
+}
+
+.input-description {
+  font-size: 18px;
+  color: #ffffff;
+  border: 0;
+  box-sizing: border-box;
+  padding: 15px;
+  width: 256px;
+  border-radius: 5px;
+  height: 56px;
+  background: rgba(196, 196, 196, 0.5);
+}
+
+.input-description:focus {
+  outline: #56c858 auto 0.5px;
+}
+::placeholder {
+  width: 26px;
+  height: 14px;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.btn-datepicker {
+  position: relative;
+}
+
+.left-arrow-icon2 {
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  bottom: 17.5%;
+  left: 38%;
+}
+
+.left-arrow-icon2:hover {
+  cursor: pointer;
+}
+
+.label-note {
+  position: absolute;
+  left: 60.5%;
+  bottom: 23.5%;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.btn-category {
+  position: relative;
+}
+
+.category:active {
+  color: #56c858;
+}
+
+.left-arrow-icon {
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  top: 20px;
+  right: 20px;
+}
+
+input {
+  position: relative;
+}
+
+.label-input {
+  top: 40.5%;
+  right: 33.5%;
+  font-size: 12px;
+  position: absolute;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.btn-cancel {
+  margin-right: 30px;
+  background: #1c1c1d;
+  padding: 0;
+  border: 0;
+  width: 22px;
+  height: 22px;
+}
+
+.btn-cancel:hover {
+  cursor: pointer;
+}
+
+.text {
+  color: #ffffff;
+}
+
+.btn-cancel:focus {
+  outline: none;
+}
+
+.line-one {
+  margin: 30px 0 30px 0;
+}
+
+.react-tabs__tab {
+  padding: 0 0 20px 0;
+  display: inline-block;
+  border: 0;
+  cursor: pointer;
+  color: #ffffff;
+  font-weight: bold;
+  font-size: 24px;
+}
+
+.react-tabs__tab--selected {
+  background: #1c1c1d;
+}
+
+.react-tabs__tab-list {
+  width: 320px;
+  text-align: center;
+}
+
+.react-tabs {
+  text-align: center;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+li {
+  list-style: none;
+}
+
+.icon-income {
+  margin-right: 44px;
+  width: 60px;
+  height: 60px;
+}
+
+.name-income {
+  color: #ffffff;
+}
+
+.icon-expense {
+  margin-right: 44px;
+  width: 60px;
+  height: 60px;
+}
+
+.name-expense {
+  font-weight: normal;
+  font-size: 16px;
+  color: #ffffff;
+}
+
+.custom-style2 {
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 623px;
+  background: #1c1c1d;
+  border-radius: 20px;
+  box-shadow: 0px 3px 20px 5px rgba(0, 0, 0, 0.1);
+  padding: 30px 30px 30px 40px;
+}
+
+.div-category {
+  margin-bottom: 10px;
+  display: flex;
+  padding-left: 77px;
+  padding-right: 77px;
+  align-items: center;
+}
+
+.div-category:hover {
+  cursor: pointer;
+}
+
+.div-category:active {
+  background: rgba(61, 117, 62, 0.2);
+}
+
+.icon-category {
+  margin-bottom: 10px;
+}
+
+.react-tabs__tab-list {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.expense {
+  padding: 0;
+}
+
+.income {
+  padding: 0;
+}
+
+.react-tabs__tab-panel {
+  width: 320px;
+}
+
+.ul-type-transaction {
+  padding: 0;
+}
+
+.btn-type-transaction {
+  border: 0;
+  padding: 0;
+  background: #1c1c1d;
+  width: 320px;
+  height: 80px;
+}
+
+.btn-type-transaction:hover {
+  cursor: pointer;
+  background: rgba(61, 117, 62, 0.2);
+}
+
+.btn-type-transaction:focus {
+  outline: none;
+}
+
+.div-type-transaction {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 50px 0 50px;
+}
+
+.react-tabs__tab--selected {
+  border-bottom: 3px solid #3d753e;
+}
+
+.category-transactions-biil {
+  padding-right: 25px;
+}
+.ReactModal__Overlay {
+  background-color: rgba(255, 255, 255, 0.4) !important;
+}
+.ReactModal__Overlay--after-open {
+  /* position: fixed;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  background-color: rgba(255, 255, 255, 0.4); */
+}

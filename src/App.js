@@ -1,5 +1,6 @@
 import React, { Suspense } from "react";
 import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom";
+import Loadingpage from "./components/loading";
 import notfound from "./components/notfound";
 
 const Login = React.lazy(() => import("./pages/Login"));
@@ -9,11 +10,15 @@ const MainTransaction = React.lazy(() => import("./pages/MainTransaction"));
 function App() {
   return (
     <div className="App">
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense
+        fallback={
+          <div>
+            {" "}
+            <Loadingpage />
+          </div>
+        }
+      >
         <BrowserRouter>
-          {/* <ul>
-          <li><Link to="/login">Go to login</Link></li>
-        </ul> */}
           <Switch>
             <Redirect exact from="/" to="/Login" />
             <Route path="/Login" component={Login} />

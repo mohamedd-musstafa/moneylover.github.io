@@ -13,6 +13,8 @@
 }
 
 ul.inline {
+  margin-top: 0;
+  overflow: auto;
   text-align: center;
   padding: 0;
   padding-top: 20px;
@@ -27,8 +29,6 @@ ul.inline li {
   display: inline-block;
   margin-left: 0;
   padding: 10px;
-  /* border-bottom: 2px solid #eee; */
-  /* transition: all 0.5s; */
   font-weight: 300;
   cursor: pointer;
   color: #aaa;
@@ -37,12 +37,3 @@ ul.inline li.selected {
   border-bottom: 3px solid #3d753e;
   color: #ffffff;
 }
-
-.day-transactions-calendars {
-  width: 150px;
-  font-weight: bold;
-  font-size: 24px;
-  text-align: center;
-  color: #939393;
-}
-

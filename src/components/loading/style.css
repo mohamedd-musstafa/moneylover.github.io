@@ -1,0 +1,33 @@
+.loading-wrap {
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  /* width: 1440px; */
+  height: 1024px;
+  background: #3d753e;
+}
+
+.loading-img {
+  margin-bottom: 50px;
+  height: 200px;
+  width: 200px;
+}
+
+.loading-processing-bar {
+  position: relative;
+}
+
+.loading-bar {
+  background: #c4c4c4;
+  border-radius: 6px;
+  width: 650px;
+  height: 12px;
+}
+
+.loading-process {
+  width: 100px;
+  height: 12px;
+  background: #56c858;
+  border-radius: 6px;
+}

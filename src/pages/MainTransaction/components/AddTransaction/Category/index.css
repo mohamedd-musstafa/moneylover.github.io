@@ -1,0 +1,183 @@
+.btn-category {
+  position: relative;
+}
+
+.left-arrow-icon {
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  top: 20px;
+  right: 20px;
+}
+
+input {
+  position: relative;
+}
+
+.label-input {
+  top: 38%;
+  right: 33.5%;
+  font-size: 12px;
+  position: absolute;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.top {
+  padding-bottom: 30px;
+  display: flex;
+  flex-direction: row;
+  text-align: center;
+}
+
+.btn-cancel {
+  margin-right: 30px;
+  background: #1c1c1d;
+  padding: 0;
+  border: 0;
+  width: 22px;
+  height: 22px;
+}
+
+.btn-cancel:hover {
+  cursor: pointer;
+}
+
+.text {
+  color: #ffffff;
+}
+
+.btn-cancel:focus {
+  outline: none;
+}
+
+.line {
+  margin: 0 0 30px 0;
+}
+
+.expense {
+  /* font-style: normal;
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 28px;
+  text-decoration: none;
+  outline: none;
+  list-style: none; */
+}
+
+.ccc {
+  background: rgba(61, 117, 62, 0.2);
+  width: 320px;
+}
+
+.react-tabs__tab {
+  padding: 0 0 20px 0;
+  display: inline-block;
+  border: 0;
+  cursor: pointer;
+  color: #ffffff;
+  font-weight: bold;
+  font-size: 24px;
+}
+
+.react-tabs__tab--selected {
+  background: #1c1c1d;
+}
+
+.react-tabs__tab-list {
+  width: 320px;
+  text-align: center;
+}
+
+.react-tabs {
+  text-align: center;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+li {
+  list-style: none;
+}
+
+.icon-income {
+  margin-right: 44px;
+  width: 60px;
+  height: 60px;
+}
+
+.name-income {
+  color: #ffffff;
+}
+
+.icon-expense {
+  margin-right: 44px;
+  width: 60px;
+  height: 60px;
+}
+
+.name-expense {
+  font-weight: normal;
+  font-size: 16px;
+  color: #ffffff;
+}
+
+/* .ReactModal__Overlay--after-open {
+  background-color: rgba(255, 255, 255);
+} */
+
+.custom-style2 {
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 623px;
+  background: #1c1c1d;
+  border-radius: 20px;
+  box-shadow: 0px 3px 20px 5px rgba(0, 0, 0, 0.1);
+  padding: 30px 30px 30px 40px;
+}
+
+.div-category {
+  margin-bottom: 10px;
+  display: flex;
+  padding-left: 77px;
+  padding-right: 77px;
+  /* justify-content: center; */
+  align-items: center;
+  /* margin-right: 44px; */
+  /* width: 320px;
+  height: 80px; */
+}
+
+.div-category:hover {
+  cursor: pointer;
+}
+
+.div-category:active {
+  background: rgba(61, 117, 62, 0.2);
+}
+
+.icon-category {
+  /* margin: 10px 44px 0 0; */
+  margin-bottom: 10px;
+}
+
+.react-tabs__tab-list {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.expense {
+  padding: 0;
+  /* margin: 20px 0; */
+}
+
+.income {
+  padding: 0;
+  /* margin: 20px 0; */
+}
+
+.react-tabs__tab-panel {
+  width: 320px;
+}
