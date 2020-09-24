@@ -17,7 +17,11 @@ const Tabs = createClass({
               <li
                 className={style}
                 key={index}
-                onClick={this.handleChange.bind(this, index)}
+                onClick={this.handleChange.bind(
+                  this,
+                  index,
+                  element.props.targetTime
+                )}
               >
                 {element.props.title}
               </li>
@@ -30,8 +34,8 @@ const Tabs = createClass({
     );
   },
 
-  handleChange(index) {
-    this.props.onTabChange(index);
+  handleChange(index, targetTime) {
+    this.props.onTabChange(index, targetTime);
   },
 });
 
@@ -43,13 +47,23 @@ const Panel = createClass({
 
 const selector = ({ transactions }) => transactions;
 
-function TabTransaction({ timeShifted, setTimeShifted }) {
+function TabTransaction({ timeShifted, setTimeShifted, setTransactionIndex }) {
   const dispatch = useDispatch();
   const transactions = useSelector(selector);
   const [tabSelected, setTabSelected] = useState(1);
 
-  const onTabChange = (index) => {
-    setTimeShifted(timeShifted + index - 1);
+  const onTabChange = (index, targetTime) => {
+    const currentTime = moment();
+
+    if (targetTime.diff(currentTime) > 0) {
+      setTabSelected(2);
+    } else {
+      setTabSelected(1);
+    }
+
+    if (targetTime.diff(currentTime) < 0) {
+      setTimeShifted(timeShifted + index - 1);
+    }
   };
 
   useEffect(() => {
@@ -114,6 +128,9 @@ function TabTransaction({ timeShifted, setTimeShifted }) {
       lastTabMonthTransactions,
       thisTabMonthTransactions,
       nextTabMonthTransactions,
+      lastTabMonthTime,
+      thisTabMonthTime,
+      nextTabMonthTime,
       lastTabMonthTimeText,
       thisTabMonthTimeText,
       nextTabMonthTimeText,
@@ -125,25 +142,31 @@ function TabTransaction({ timeShifted, setTimeShifted }) {
       <Panel
         title={splitTransactions.lastTabMonthTimeText}
         className="day-transactions-calendars"
+        targetTime={splitTransactions.lastTabMonthTime}
       >
         <ListTransaction
           transactions={splitTransactions.lastTabMonthTransactions}
+          setTransactionIndex={setTransactionIndex}
         />
       </Panel>
       <Panel
         title={splitTransactions.thisTabMonthTimeText}
         className="last-month-transactions-calendars"
+        targetTime={splitTransactions.thisTabMonthTime}
       >
         <ListTransaction
           transactions={splitTransactions.thisTabMonthTransactions}
+          setTransactionIndex={setTransactionIndex}
         />
       </Panel>
       <Panel
         title={splitTransactions.nextTabMonthTimeText}
         className="this-month-transactions-calendars"
+        targetTime={splitTransactions.nextTabMonthTime}
       >
         <ListTransaction
           transactions={splitTransactions.nextTabMonthTransactions}
+          setTransactionIndex={setTransactionIndex}
         />
       </Panel>
     </Tabs>

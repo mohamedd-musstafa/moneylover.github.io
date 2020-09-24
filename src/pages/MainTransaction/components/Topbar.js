@@ -6,8 +6,7 @@ import Transaction from "./AddTransaction/Transaction";
 
 export default function Topbar({ setTimeShifted }) {
   // const balance = localStorage.getItem("balance");
-  // const firstName = localStorage.getItem("firstName");
-
+  const firstName = localStorage.getItem("firstName");
   const [isNewTransactionOpen, setIsNewTransactionOpen] = useState(false);
 
   const onOpenAddNewTransactionModal = () => setIsNewTransactionOpen(true);
@@ -30,7 +29,7 @@ export default function Topbar({ setTimeShifted }) {
           <img alt="User's Avatar" src={avatar} />
         </div>
         <div className="user-details">
-          <p className="user-name">{/* {firstName} */}</p>
+          <p className="user-name"> {firstName} </p>
           <p className="user-balance">{/* {balance} */}</p>
         </div>
       </div>

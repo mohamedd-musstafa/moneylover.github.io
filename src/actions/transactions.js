@@ -13,7 +13,8 @@ const listTransaction = () => async (dispatch, _getState, api) => {
     });
 
     const data = res.data.map(
-      ({ type, category, amount, description, date }) => ({
+      ({ id, type, category, amount, description, date }) => ({
+        id,
         type,
         category,
         amount,
@@ -76,4 +77,63 @@ const addTransaction = (type, category, amount, description, date) => async (
   }
 };
 
-export { listTransaction, addTransaction };
+const editTransaction = (
+  id,
+  type,
+  category,
+  amount,
+  description,
+  date
+) => async (dispatch, _getState, api) => {
+  try {
+    console.log(id, type, category, amount, description, date);
+    // const requestSource = axios.CancelToken.source();
+
+    // await api(requestSource).put(`/transactions/v1.0/${id}`, {
+    //   type,
+    //   category,
+    //   amount,
+    //   description,
+    //   date,
+    // });
+
+    // dispatch({
+    //   type: 'EDIT_TRANSACTION',
+    //   payload: {
+    //     type,
+    //     category,
+    //     amount,
+    //     description,
+    //     date,
+    //   },
+    // });
+
+    // return requestSource;
+  } catch (e) {
+    console.error(e);
+    return undefined;
+  }
+};
+
+const deleteTransaction = (id) => async (dispatch, _getState, api) => {
+  try {
+    const requestSource = axios.CancelToken.source();
+
+    const test = await api(requestSource).delete(`/transactions/v1.0/${id}`);
+
+    console.log(test);
+
+    dispatch({
+      type: "DELETE_TRANSACTION",
+      payload: id,
+    });
+
+    return requestSource;
+  } catch (e) {
+    console.error(e);
+    return undefined;
+  }
+};
+
+export { listTransaction, addTransaction, editTransaction, deleteTransaction };
+

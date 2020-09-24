@@ -4,7 +4,7 @@ import { v4 as uuidv4 } from "uuid";
 import bill from "../../../assets/images/bill.png";
 import NoTransaction from "./NoTransaction";
 
-function ListTransaction({ transactions }) {
+function ListTransaction({ transactions, setTransactionIndex }) {
   const inflow = transactions.filter(
     ({ type }) => type.toUpperCase() === "INCOME"
   );
@@ -13,6 +13,10 @@ function ListTransaction({ transactions }) {
   );
   const totalInflow = inflow.reduce((total, { amount }) => total + amount, 0);
   const totalOutflow = outflow.reduce((total, { amount }) => total + amount, 0);
+
+  const onViewDetail = (index) => () => {
+    setTransactionIndex(index);
+  };
 
   const renderTransactionsByCategory = (transactionsByType) => {
     const categories = transactionsByType.reduce((group, transaction) => {
@@ -54,12 +58,16 @@ function ListTransaction({ transactions }) {
           </div>
           <hr className="line-3" />
           <div className="day-transactions">
-            {categories[category].map(({ date, amount, description }) => {
+            {categories[category].map(({ id, date, amount, description }) => {
               const dayOfMonth = moment(date).date();
               const displayDate = moment(date).format("dddd, MMMM Do YYYY");
-              {/* const */}
+
               return (
-                <div  className="transactions-random" key={uuidv4()}>
+                <div
+                  className="transactions-random"
+                  key={id}
+                  onClick={onViewDetail(id)}
+                >
                   <div className="transactions-desc">
                     <span className="day-transactions-bill">{dayOfMonth}</span>
                     <div className="transactions-div">

@@ -1,11 +1,8 @@
-import React, { useState } from "react";
-// import DatePicker from "react-datepicker";
+import React from "react";
 import "react-datepicker/dist/react-datepicker.css";
 import Modal from "react-modal";
-// import { useDispatch } from "react-redux";
 import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
-import { addTransaction } from "../../../../../actions/transactions";
 import BillIcon from "../../../../../assets/images/bill.png";
 // import closeIcon from "../../../../../assets/images/close-icon";
 import closeIcon from "../../../../../assets/images/close-icon.png";

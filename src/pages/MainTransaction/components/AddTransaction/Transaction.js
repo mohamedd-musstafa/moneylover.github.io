@@ -1,11 +1,15 @@
 /* eslint-disable jsx-a11y/no-onchange */
-import React, { memo, useState } from "react";
+import moment from "moment";
+import React, { memo, useEffect, useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import Modal from "react-modal";
 import { useDispatch } from "react-redux";
 import "react-tabs/style/react-tabs.css";
-import { addTransaction } from "../../../../actions/transactions";
+import {
+  addTransaction,
+  editTransaction
+} from "../../../../actions/transactions";
 import LeftArrowIcon from "../../../../assets/images/left-arrow.png";
 import Category from "./Category";
 // import DateForm from "./Date/index";
@@ -13,7 +17,7 @@ import "./TransactionStyle.css";
 
 Modal.setAppElement("#root");
 
-function Transaction({ isOpen, onRequestClose }) {
+function Transaction({ type, transaction, isOpen, onRequestClose }) {
   const style = {
     justifyContent: "space-between",
     display: "flex",
@@ -21,7 +25,8 @@ function Transaction({ isOpen, onRequestClose }) {
   };
   const [transactionType, setTransactionType] = useState(0);
   const [isCategoryOpen, setIsCategoryOpen] = useState(false);
-  const [{ expense, income, amount, description }, setState] = useState({
+  const [{ id, expense, income, amount, description }, setState] = useState({
+    id: 0,
     expense: "BILLS & UTILITIES",
     income: "SALARY",
     amount: "",
@@ -32,7 +37,31 @@ function Transaction({ isOpen, onRequestClose }) {
   const dispatch = useDispatch();
   const onSubmit = (e) => {
     e.preventDefault();
-    if (transactionType === 0) {
+    if (type === "edit") {
+      if (transactionType === 0) {
+        dispatch(
+          editTransaction(
+            id,
+            "EXPENSE",
+            expense,
+            Number.parseFloat(amount),
+            description,
+            date.toISOString()
+          )
+        );
+      } else {
+        dispatch(
+          editTransaction(
+            id,
+            "INCOME",
+            income,
+            Number.parseFloat(amount),
+            description,
+            date.toISOString()
+          )
+        );
+      }
+    } else if (transactionType === 0) {
       dispatch(
         addTransaction(
           "EXPENSE",
@@ -57,6 +86,24 @@ function Transaction({ isOpen, onRequestClose }) {
     onRequestClose();
   };
 
+  useEffect(() => {
+    if (type === "edit" && transaction) {
+      console.log(type, transaction);
+      const category = transaction.type.toLowerCase();
+
+      setState((prevData) => ({
+        ...prevData,
+        id: transaction.id,
+        amount: transaction.amount,
+        description: transaction.description,
+        [category]: transaction.category,
+      }));
+
+      setDate(moment(transaction.date).toDate());
+      setCategoryText(transaction.category);
+    }
+  }, [transaction, type]);
+
   const onInputChange = (e) => {
     const { name, value } = e.target;
     setState((prevData) => ({
@@ -64,13 +111,15 @@ function Transaction({ isOpen, onRequestClose }) {
       [name]: value,
     }));
   };
-  const onChooseTransactionType = (category, type) => () => {
+  const onChooseTransactionType = (category, typeCategory) => () => {
     setState((prevData) => ({
       ...prevData,
-      [type]: category,
+      [typeCategory]: category,
     }));
     setIsCategoryOpen(false);
     setCategoryText(category);
+
+    console.log(category, typeCategory);
   };
   return (
     <>
@@ -81,7 +130,9 @@ function Transaction({ isOpen, onRequestClose }) {
         onRequestClose={onRequestClose}
       >
         <div className="top-wrap">
-          <span className="text">Add Transaction</span>
+          <span className="text">
+            {type === "edit" ? "Edit" : "Add"} Transaction
+          </span>
           <div className="btn-group">
             <button onClick={onRequestClose} className="btn">
               <span className="btn-text-cancel">CANCEL</span>
@@ -122,11 +173,7 @@ function Transaction({ isOpen, onRequestClose }) {
               />
             </div>
           </div>
-          <input
-            // onClick={onRequestClose}
-            type="submit"
-            className="input-submit"
-          />
+          <input type="submit" className="input-submit" />
         </form>
       </Modal>
     </>

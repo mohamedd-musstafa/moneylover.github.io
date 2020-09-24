@@ -11,6 +11,12 @@ const addTransactionReducer = (state = [], action) => {
         return transactionDateA - transactionDateB;
       });
     }
+    case "DELETE_TRANSACTION": {
+      const test = state.filter(({ id }) => id !== action.payload);
+      console.log(test, action.payload);
+
+      return test;
+    }
     default:
       return state;
   }
