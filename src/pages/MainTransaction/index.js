@@ -1,21 +1,20 @@
 import moment from "moment";
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { deleteTransaction } from "../../actions/transactions";
+// import { deleteTransaction } from "../../actions/transactions";
 import closeIcon from "../../assets/images/close-icon.png";
 import Transaction from "./components/AddTransaction/Transaction";
+import Delete from "./components/Delete";
 import TabTransaction from "./components/TabTransaction";
 import Topbar from "./components/Topbar";
 import "./transaction.css";
-import Modal from "react-modal";
-import Delete from "./components/Delete";
+// import Details from "./components/Details";
+
 const selector = ({ transactions }) => transactions;
 
 export default function MainTraction() {
   const [isPopupConfirmOpen, setIsPopupConfirmOpen] = useState(false);
-
   const onOpenPopupConfirmModal = () => setIsPopupConfirmOpen(true);
-
   const onClosePopupConfirmModal = () => setIsPopupConfirmOpen(false);
   const [timeShifted, setTimeShifted] = useState(0);
   const [transactionIndex, setTransactionIndex] = useState(undefined);
@@ -23,60 +22,57 @@ export default function MainTraction() {
   const dispatch = useDispatch();
   const [isEditTransactionOpen, setIsEditTransactionOpen] = useState(false);
   const [transaction, setTransaction] = useState(undefined);
-
   const onEdit = (tran) => () => {
     setIsEditTransactionOpen(true);
     setTransaction(tran);
   };
-
-  const onDelete = (id) => () => {
-    dispatch(deleteTransaction(id));
-  };
-
   const renderTransactionDetail = () => {
-    if (transactionIndex) {
-      const { id, date, amount, description } = transactions[transactionIndex];
+    const trans = transactions.find(({ id }) => transactionIndex === id);
+    if (trans) {
+      const { id, date, amount, description, category } = trans;
       const dayOfMonth = moment(date).date();
-      const displayDate = moment(date).format("dddd, MMMM/Do/YYYY");
+      const displayDate = moment(date).format("dddd, MMMM Do YYYY");
 
       return (
         <div id="transaction-detail">
           <div className="top-wrap-detail">
-            {/* <Delete onRequestClose={onClosePopupConfirmModal} /> */}
-            <div className="">
-              <img alt="icon" className="img-detail" src={closeIcon}></img>
+            <Delete
+              id={id}
+              isOpen={isPopupConfirmOpen}
+              onRequestClose={onClosePopupConfirmModal}
+            />
+            <div id="close-div">
+              <img alt="icon" className="img-detail" src={closeIcon} />
               <span className="text-detail">Transaction Details</span>
             </div>
             <div className="btn-group">
               <button
                 className="btn-delete"
                 type="button"
-                // onClick={onOpenPopupConfirmModal}
-                onClick={onDelete(id)}
+                onClick={onOpenPopupConfirmModal}
               >
                 Delete
               </button>
               <button
                 className="btn-edit"
                 type="button"
-                onClick={onEdit(transactions[transactionIndex])}
+                onClick={onEdit(trans)}
               >
                 Edit
               </button>
             </div>
           </div>
-          <hr className="line"></hr>
-          <div className="transactions-random">
-            <div className="transactions-desc">
-              <span className="day-transactions-bill">{dayOfMonth}</span>
-              <div className="transactions-div">
-                <span className="day-transactions">{displayDate}</span>
-                <span className="desc-transactions">
-                  Description: {description}
-                </span>
+          <hr className="line" />
+          <div className="transactions-random-detail">
+            <div className="transactions-div">
+              <span className="category-in-detail">{category}</span>
+              <span className="day-transactions">{displayDate}</span>
+              <hr className="line-10"></hr>
+              <div className="description-and-amount">
+                <span className="desc-transactions">{description}</span>{" "}
+                <span className="transactions-bill-number-day">{amount} ₫</span>
               </div>
             </div>
-            <span className="transactions-bill-number-day">{amount} ₫</span>
           </div>
         </div>
       );
@@ -102,6 +98,7 @@ export default function MainTraction() {
         />
       </div>
       <div>{renderTransactionDetail()}</div>
+      {/* <Details /> */}
     </div>
   );
 }

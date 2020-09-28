@@ -318,16 +318,18 @@
 }
 
 #transaction-detail {
+  position: fixed;
   width: 623px;
-  /* height: 423px; */
+  height: 423px;
   background: #1c1c1d;
   box-shadow: 0px 3px 20px 5px rgba(0, 0, 0, 0.1);
   border-radius: 20px;
+  top: 15.5%;
+  right: 5%;
 }
 
 .btn-delete {
   margin-right: 30px;
-
   font-size: 20px;
   color: #e93131;
   background: #1c1c1d;
@@ -337,6 +339,10 @@
 
 .btn-delete:hover {
   cursor: pointer;
+}
+
+.btn-delete:focus {
+  outline: none;
 }
 
 .btn-edit {
@@ -349,6 +355,9 @@
 }
 .btn-edit:hover {
   cursor: pointer;
+}
+.btn-edit:focus {
+  outline: none;
 }
 
 .text-detail {
@@ -374,4 +383,31 @@
 
 .img-detail:hover {
   cursor: pointer;
+}
+
+.category-in-detail {     margin-bottom: 10px;
+
+  width: 142px;
+  font-weight: 500;
+  font-size: 22px;
+  color: #ffffff;
+}
+.transactions-random-detail {
+  align-items: flex-start;
+  display: flex;
+  padding-top: 0px;
+  padding-bottom: 50px;
+  padding-left: 30px;
+  flex-direction: column;
+}
+
+.line-10 {
+  border: 1px solid rgba(196, 196, 196, 0.5);
+  width: 200px;     margin: 20px 0 20px 0;
+
+}
+
+.description-and-amount {
+  display: flex;
+  flex-direction: column;
 }

@@ -1,7 +1,7 @@
 .line {
   margin-top: 15px;
   /* margin: 0; */
-  margin-bottom: 30px;
+  margin-bottom: 28px;
   width: 623px;
   border: 1px solid rgba(196, 196, 196, 0.5);
   transform: rotate(-0.06deg);
@@ -18,6 +18,9 @@
   border-radius: 20px;
   box-shadow: 0px 3px 20px 5px rgba(0, 0, 0, 0.1);
   padding: 30px 30px 30px 40px;
+}
+.custom-style:focus {
+  outline: none;
 }
 
 .top-wrap {
@@ -329,6 +332,9 @@ li {
   box-shadow: 0px 3px 20px 5px rgba(0, 0, 0, 0.1);
   padding: 30px 30px 30px 40px;
 }
+.custom-style2:focus {
+  outline: none;
+}
 
 .div-category {
   margin-bottom: 10px;
@@ -413,4 +419,77 @@ li {
   right: 0px;
   bottom: 0px;
   background-color: rgba(255, 255, 255, 0.4); */
+}
+
+.div-delete-wrap {
+  padding: 20px 25px 25px 25px;
+}
+
+.custom-style3 {
+  width: 400px;
+  background: #ffffff;
+  border-radius: 10px;
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.custom-style3:focus {
+  outline: none;
+}
+
+.btn-delete-no {
+  margin-right: 25px;
+  width: 100px;
+  height: 32px;
+  background: rgba(196, 196, 196, 0.7);
+  border-radius: 5px;
+}
+
+.btn-no-delete-text {
+  width: 20px;
+  font-weight: bold;
+  font-size: 14px;
+  color: #3d753e;
+}
+
+.btn-delete-yes {
+  width: 100px;
+  height: 32px;
+  background: #e93131;
+  border-radius: 5px;
+}
+
+.btn-delete-yes:hover {
+  cursor: pointer;
+}
+
+.btn-yes-delete-text {
+  width: 26px;
+  font-weight: bold;
+  font-size: 14px;
+  color: #ffffff;
+}
+
+.confirmation-delete {
+  display: flex;
+  flex-direction: column;
+}
+
+.confirmation-text {
+  margin-bottom: 20px;
+  font-weight: bold;
+  font-size: 20px;
+  color: #000000;
+}
+
+.confirmation-sure-text {
+  font-size: 18px;
+  margin-bottom: 40px;
+  letter-spacing: -0.078px;
+  color: #000000;
+}
+
+.btn-group {
+  text-align: right;
 }

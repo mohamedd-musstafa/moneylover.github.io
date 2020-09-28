@@ -1,96 +1,94 @@
-// import React from "react";
-// // import notransaction from "../../../assets/images/no-transaction.png";
+/* eslint-disable jsx-a11y/no-onchange */
+import React, { memo, useState } from "react";
+import moment from "moment";
+import "react-datepicker/dist/react-datepicker.css";
+import Modal from "react-modal";
+import { useDispatch, useSelector } from "react-redux";
+import "react-tabs/style/react-tabs.css";
+import closeIcon from "../../../assets/images/close-icon.png";
+// import "./TransactionStyle.css";
+// import { deleteTransaction } from "../../../actions/transactions";
+import "./AddTransaction/TransactionStyle.css";
 
-// export default function Details({ date, amount, description }) {
-//   return (
-//     <div>
-//       <span>{amount}</span>
-//       <span>{description}</span>
-//       <span>{date}</span>
-//     </div>
-//   );
-// }
-// import moment from "moment";
-// import React, { useState } from "react";
-// import { useDispatch, useSelector } from "react-redux";
-// import { deleteTransaction } from "../../actions/transactions";
-// import Transaction from "./components/AddTransaction/Transaction";
-// import TabTransaction from "./components/TabTransaction";
-// import Topbar from "./components/Topbar";
-// import "./transaction.css";
+Modal.setAppElement("#root");
 
-// const selector = ({ transactions }) => transactions;
+const selector = ({ transactions }) => transactions;
 
-// export default function MainTraction() {
-//   const [timeShifted, setTimeShifted] = useState(0);
-//   const [transactionIndex, setTransactionIndex] = useState(undefined);
-//   const transactions = useSelector(selector);
-//   const dispatch = useDispatch();
-//   const [isEditTransactionOpen, setIsEditTransactionOpen] = useState(false);
-//   const [transaction, setTransaction] = useState(undefined);
+function Details({ isOpen, onRequestClose, id }) {
+  const [isPopupConfirmOpen, setIsPopupConfirmOpen] = useState(false);
+  const onOpenPopupConfirmModal = () => setIsPopupConfirmOpen(true);
+  const onClosePopupConfirmModal = () => setIsPopupConfirmOpen(false);
+  // const [timeShifted, setTimeShifted] = useState(0);
+  const [transactionIndex, setTransactionIndex] = useState(undefined);
+  const transactions = useSelector(selector);
+  const dispatch = useDispatch();
+  const [isEditTransactionOpen, setIsEditTransactionOpen] = useState(false);
+  const [transaction, setTransaction] = useState(undefined);
+  const onEdit = (tran) => () => {
+    setIsEditTransactionOpen(true);
+    setTransaction(tran);
+  };
 
-//   const onEdit = (tran) => () => {
-//     setIsEditTransactionOpen(true);
-//     setTransaction(tran);
-//   };
+  const trans = transactions.find(({ id }) => transactionIndex === id);
+  if (trans) {
+    const { id, date, amount, description } = trans;
+    const dayOfMonth = moment(date).date();
+    const displayDate = moment(date).format("dddd, MMMM/Do/YYYY");
 
-//   const onDelete = (id) => () => {
-//     dispatch(deleteTransaction(id));
-//   };
+    return (
+      <Modal
+        className="custom-style3"
+        isOpen={isOpen}
+        onRequestClose={onRequestClose}
+      >
+        <div id="transaction-detail">
+          <div className="top-wrap-detail">
+            {/* <Delete
+            id={id}
+            isOpen={isPopupConfirmOpen}
+            onRequestClose={onClosePopupConfirmModal}
+          /> */}
+            <div id="close-div">
+              <img alt="icon" className="img-detail" src={closeIcon} />
+              <span className="text-detail">Transaction Details</span>
+            </div>
+            <div className="btn-group">
+              <button
+                className="btn-delete"
+                type="button"
+                onClick={onOpenPopupConfirmModal}
+              >
+                Delete
+              </button>
+              <button
+                className="btn-edit"
+                type="button"
+                onClick={onEdit(trans)}
+              >
+                Edit
+              </button>
+            </div>
+          </div>
+          <hr className="line" />
+          <div className="transactions-random">
+            <div className="transactions-desc">
+              {/* <span className="day-transactions-bill">{dayOfMonth}</span> */}
+              <div className="transactions-div">
+                <span className="day-transactions">{displayDate}</span>
+                <hr className="line-10"></hr>
+                <span className="desc-transactions">
+                  Description: {description}
+                </span>
+              </div>
+            </div>
+            <span className="transactions-bill-number-day">{amount} ₫</span>
+          </div>
+        </div>
+      </Modal>
+    );
+  }
 
-//   const renderTransactionDetail = () => {
-//     if (transactionIndex) {
-//       const { id, date, amount, description } = transactions[transactionIndex];
-//       const dayOfMonth = moment(date).date();
-//       const displayDate = moment(date).format("dddd, MMMM Do YYYY");
+  return undefined;
+}
 
-//       return (
-//         <div>
-//           <button
-//             type="button"
-//             onClick={onEdit(transactions[transactionIndex])}
-//           >
-//             Edit
-//           </button>
-//           <button type="button" onClick={onDelete(id)}>
-//             Delete
-//           </button>
-//           <div className="transactions-random">
-//             <div className="transactions-desc">
-//               <span className="day-transactions-bill">{dayOfMonth}</span>
-//               <div className="transactions-div">
-//                 <span className="day-transactions">{displayDate}</span>
-//                 <span className="desc-transactions">
-//                   Description: {description}
-//                 </span>
-//               </div>
-//             </div>
-//             <span className="transactions-bill-number-day">{amount} ₫</span>
-//           </div>
-//         </div>
-//       );
-//     }
-
-//     return undefined;
-//   };
-
-//   return (
-//     <div className="homepage">
-//       <Transaction
-//         isOpen={isEditTransactionOpen}
-//         onRequestClose={() => setIsEditTransactionOpen(false)}
-//         type="edit"
-//         transaction={transaction}
-//       />
-//       <Topbar setTimeShifted={setTimeShifted} />
-//       <div className="transactions">
-//         <TabTransaction
-//           timeShifted={timeShifted}
-//           setTimeShifted={setTimeShifted}
-//           setTransactionIndex={setTransactionIndex}
-//         />
-//         <div id="transaction-detail">{renderTransactionDetail()}</div>
-//       </div>
-//     </div>
-//   );
-// }
+export default memo(Details);
