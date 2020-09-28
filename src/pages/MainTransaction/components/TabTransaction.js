@@ -53,17 +53,7 @@ function TabTransaction({ timeShifted, setTimeShifted, setTransactionIndex }) {
   const [tabSelected, setTabSelected] = useState(1);
 
   const onTabChange = (index, targetTime) => {
-    const currentTime = moment();
-
-    if (targetTime.diff(currentTime) > 0) {
-      setTabSelected(2);
-    } else {
-      setTabSelected(1);
-    }
-
-    if (targetTime.diff(currentTime) < 0) {
-      setTimeShifted(timeShifted + index - 1);
-    }
+    setTimeShifted(timeShifted + index - 1);
   };
 
   useEffect(() => {

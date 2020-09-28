@@ -8,7 +8,7 @@ import { useDispatch } from "react-redux";
 import "react-tabs/style/react-tabs.css";
 import {
   addTransaction,
-  editTransaction
+  editTransaction,
 } from "../../../../actions/transactions";
 import LeftArrowIcon from "../../../../assets/images/left-arrow.png";
 import Category from "./Category";
@@ -27,7 +27,7 @@ function Transaction({ type, transaction, isOpen, onRequestClose }) {
   const [isCategoryOpen, setIsCategoryOpen] = useState(false);
   const [{ id, expense, income, amount, description }, setState] = useState({
     id: 0,
-    expense: "BILLS & UTILITIES",
+    expense: "RESTAURANT",
     income: "SALARY",
     amount: "",
     description: "",

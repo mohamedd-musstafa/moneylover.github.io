@@ -87,28 +87,28 @@ const editTransaction = (
 ) => async (dispatch, _getState, api) => {
   try {
     console.log(id, type, category, amount, description, date);
-    // const requestSource = axios.CancelToken.source();
+    const requestSource = axios.CancelToken.source();
 
-    // await api(requestSource).put(`/transactions/v1.0/${id}`, {
-    //   type,
-    //   category,
-    //   amount,
-    //   description,
-    //   date,
-    // });
+    await api(requestSource).put(`/transactions/v1.0/${id}`, {
+      type,
+      category,
+      amount,
+      description,
+      date,
+    });
 
-    // dispatch({
-    //   type: 'EDIT_TRANSACTION',
-    //   payload: {
-    //     type,
-    //     category,
-    //     amount,
-    //     description,
-    //     date,
-    //   },
-    // });
+    dispatch({
+      type: "EDIT_TRANSACTION",
+      payload: {
+        type,
+        category,
+        amount,
+        description,
+        date,
+      },
+    });
 
-    // return requestSource;
+    return requestSource;
   } catch (e) {
     console.error(e);
     return undefined;
@@ -136,4 +136,3 @@ const deleteTransaction = (id) => async (dispatch, _getState, api) => {
 };
 
 export { listTransaction, addTransaction, editTransaction, deleteTransaction };
-

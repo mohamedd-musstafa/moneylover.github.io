@@ -25,6 +25,7 @@
   display: flex;
   flex-direction: row;
   text-align: center;
+  align-items: center;
 }
 
 .text {
@@ -255,10 +256,6 @@ input {
 
 .btn-cancel:hover {
   cursor: pointer;
-}
-
-.text {
-  color: #ffffff;
 }
 
 .btn-cancel:focus {
