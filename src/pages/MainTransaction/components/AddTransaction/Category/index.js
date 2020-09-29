@@ -17,6 +17,16 @@ import Transportation from "../../../../../assets/images/transportation.png";
 import "../TransactionStyle.css";
 
 Category.propTypes = {};
+
+const categoryImages = {
+  RESTAURANT: BillIcon,
+  SHOPPING: Transportation,
+  TRANSPORTATION: FoodDrink,
+  OTHERS: OtherIcon,
+  SALARY: SalaryIcon,
+  FREELANCE: GiftIcon,
+  INVESTMENT: SellIcon,
+};
 function Category({
   isCategoryOpen,
   setIsCategoryOpen,
@@ -44,9 +54,18 @@ function Category({
         type="button"
         onClick={onOpenCategoryModal}
       >
-        <img alt="Icon" src={LeftArrowIcon} className="left-arrow-icon"></img>
+        <img alt="Icon" src={LeftArrowIcon} className="left-arrow-icon" />
         <span className="category-text">Category</span>
-        <span className="category-text-display">{categoryText}</span>
+        <div className="category-type-transaction">
+          {categoryText !== "" ? (
+            <img
+              alt="Icon"
+              src={categoryImages[categoryText]}
+              className="icon-category-type"
+            />
+          ) : undefined}
+          <span className="category-text-display">{categoryText}</span>
+        </div>
       </button>
       <Modal
         className="custom-style2"
@@ -59,11 +78,11 @@ function Category({
             onClick={onCloseCategoryModal}
             className="btn-cancel"
           >
-            <img alt="icon" src={closeIcon}></img>
+            <img alt="icon" src={closeIcon} />
           </button>
           <span className="text">Select Category</span>
         </div>
-        <hr className="line-one"></hr>
+        <hr className="line-one" />
         <Tabs onSelect={setTransactionType}>
           <TabList>
             <Tab>EXPENSE</Tab>
@@ -78,11 +97,7 @@ function Category({
                   onClick={onChooseTransactionType("RESTAURANT", "expense")}
                 >
                   <div className="div-type-transaction">
-                    <img
-                      alt="icon"
-                      className="icon-expense"
-                      src={BillIcon}
-                    ></img>
+                    <img alt="icon" className="icon-expense" src={BillIcon} />
                     <span className="name-expense"> Restaurant</span>
                   </div>
                 </button>
@@ -98,7 +113,7 @@ function Category({
                       alt="icon"
                       className="icon-expense"
                       src={Transportation}
-                    ></img>
+                    />
                     <span className="name-expense"> Shopping</span>
                   </div>
                 </button>
@@ -110,11 +125,7 @@ function Category({
                   onClick={onChooseTransactionType("TRANSPORTATION", "expense")}
                 >
                   <div className="div-type-transaction">
-                    <img
-                      alt="icon"
-                      className="icon-expense"
-                      src={FoodDrink}
-                    ></img>
+                    <img alt="icon" className="icon-expense" src={FoodDrink} />
                     <span className="name-expense"> Transportation</span>
                   </div>
                 </button>
@@ -126,11 +137,7 @@ function Category({
                   onClick={onChooseTransactionType("OTHERS", "expense")}
                 >
                   <div className="div-type-transaction">
-                    <img
-                      alt="icon"
-                      className="icon-expense"
-                      src={OtherIcon}
-                    ></img>
+                    <img alt="icon" className="icon-expense" src={OtherIcon} />
                     <span className="name-expense"> Others</span>
                   </div>
                 </button>
@@ -146,11 +153,7 @@ function Category({
                   onClick={onChooseTransactionType("SALARY", "income")}
                 >
                   <div className="div-type-transaction">
-                    <img
-                      alt="icon"
-                      className="icon-income"
-                      src={SalaryIcon}
-                    ></img>
+                    <img alt="icon" className="icon-income" src={SalaryIcon} />
                     <span className="name-expense"> Salary</span>
                   </div>
                 </button>
@@ -162,11 +165,7 @@ function Category({
                   onClick={onChooseTransactionType("FREELANCE", "income")}
                 >
                   <div className="div-type-transaction">
-                    <img
-                      alt="icon"
-                      className="icon-income"
-                      src={GiftIcon}
-                    ></img>
+                    <img alt="icon" className="icon-income" src={GiftIcon} />
                     <span className="name-expense">Freelance</span>
                   </div>
                 </button>
@@ -178,11 +177,7 @@ function Category({
                   onClick={onChooseTransactionType("INVESTMENT", "income")}
                 >
                   <div className="div-type-transaction">
-                    <img
-                      alt="icon"
-                      className="icon-income"
-                      src={SellIcon}
-                    ></img>
+                    <img alt="icon" className="icon-income" src={SellIcon} />
                     <span className="name-expense"> Investment</span>
                   </div>
                 </button>
@@ -194,11 +189,7 @@ function Category({
                   onClick={onChooseTransactionType("OTHERS", "income")}
                 >
                   <div className="div-type-transaction">
-                    <img
-                      alt="icon"
-                      className="icon-income"
-                      src={OtherIcon}
-                    ></img>
+                    <img alt="icon" className="icon-income" src={OtherIcon} />
                     <span className="name-expense"> Others</span>
                   </div>
                 </button>

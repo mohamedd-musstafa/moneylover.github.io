@@ -8,7 +8,7 @@ export default function NoTransaction() {
         alt="No Transaction Icon"
         className="notransaction"
         src={notransaction}
-      ></img>
+      />
       <span className="notransaction-text">No Transactions</span>
     </div>
   );

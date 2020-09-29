@@ -45,11 +45,7 @@ export default function Register() {
   return (
     <div className="wrapper">
       <div className="top-background">
-        <img
-          alt="Deposit Icon"
-          src={depositIcon}
-          className="deposit-icon"
-        ></img>
+        <img alt="Deposit Icon" src={depositIcon} className="deposit-icon" />
         <div className="header-name">Money Lover</div>
       </div>
 
@@ -128,7 +124,7 @@ export default function Register() {
               onClick={togglePasswordVisibility}
               className="eyeRegister"
               src={passwordShown ? eyeSlashIcon : eyeIcon}
-            ></img>
+            />
           </div>
           <div className="passwordconfirm-register">
             <input
@@ -149,7 +145,7 @@ export default function Register() {
               onClick={toggleConfirmPasswordVisibility}
               className="eyeslashRegister"
               src={confirmPasswordShown ? eyeSlashIcon : eyeIcon}
-            ></img>
+            />
           </div>
 
           <button

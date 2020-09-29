@@ -1,8 +1,24 @@
 import moment from "moment";
-import React, { memo } from "react";
+import React, { memo, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
-import bill from "../../../assets/images/bill.png";
+import { default as BillIcon } from "../../../assets/images/bill.png";
+import FoodDrink from "../../../assets/images/food-drink.png";
+import GiftIcon from "../../../assets/images/gift.png";
+import OtherIcon from "../../../assets/images/money-other.png";
+import SalaryIcon from "../../../assets/images/money-salary.png";
+import SellIcon from "../../../assets/images/sell.png";
+import Transportation from "../../../assets/images/transportation.png";
 import NoTransaction from "./NoTransaction";
+
+const categoryImages = {
+  RESTAURANT: BillIcon,
+  SHOPPING: Transportation,
+  TRANSPORTATION: FoodDrink,
+  OTHERS: OtherIcon,
+  SALARY: SalaryIcon,
+  FREELANCE: GiftIcon,
+  INVESTMENT: SellIcon,
+};
 
 function ListTransaction({ transactions, setTransactionIndex }) {
   const inflow = transactions.filter(
@@ -13,11 +29,20 @@ function ListTransaction({ transactions, setTransactionIndex }) {
   );
   const totalInflow = inflow.reduce((total, { amount }) => total + amount, 0);
   const totalOutflow = outflow.reduce((total, { amount }) => total + amount, 0);
-
+  const [styleDiv, setStyleDiv] = useState();
   const onViewDetail = (index) => () => {
     setTransactionIndex(index);
+    setStyleDiv();
+    const x = document.getElementById("hidden-transaction-detail");
+    if (x.style.display === "none") {
+      x.style.display = "block";
+    }
+    const y = document.getElementById("transactions");
+    if (styleDiv !== 0) {
+      y.style.marginLeft = "72px";
+      y.style.width = "660px";
+    }
   };
-
   const renderTransactionsByCategory = (transactionsByType) => {
     const categories = transactionsByType.reduce((group, transaction) => {
       const { category } = transaction;
@@ -27,10 +52,8 @@ function ListTransaction({ transactions, setTransactionIndex }) {
         group[category] = [];
         group[category].push(transaction);
       }
-
       return group;
     }, {});
-
     return Object.keys(categories).map((category) => {
       const totalByCategory = categories[category].reduce(
         (total, { amount }) => total + amount,
@@ -42,8 +65,8 @@ function ListTransaction({ transactions, setTransactionIndex }) {
             <div className="transactions-desc">
               <img
                 alt="Bill Icon"
-                className="category-transactions-biil"
-                src={bill}
+                className="category-transactions-bill"
+                src={categoryImages[category]}
               />
               <div>
                 <span className="name-transactions">{category}</span>
@@ -61,7 +84,6 @@ function ListTransaction({ transactions, setTransactionIndex }) {
             {categories[category].map(({ id, date, amount, description }) => {
               const dayOfMonth = moment(date).date();
               const displayDate = moment(date).format("dddd, MMMM Do YYYY");
-
               return (
                 <div
                   className="transactions-random"
@@ -71,7 +93,9 @@ function ListTransaction({ transactions, setTransactionIndex }) {
                   <div className="transactions-desc">
                     <span className="day-transactions-bill">{dayOfMonth}</span>
                     <div className="transactions-div">
-                      <span className="day-transactions">{displayDate}</span>
+                      <span className="day-transactions-list">
+                        {displayDate}
+                      </span>
                       <span className="desc-transactions">
                         Description: {description}
                       </span>
@@ -88,12 +112,10 @@ function ListTransaction({ transactions, setTransactionIndex }) {
       );
     });
   };
-
   const renderTransactions = () => {
     if (transactions.length === 0) {
       return <NoTransaction />;
     }
-
     return (
       <div>
         <div className="inflow-and-outflow">
@@ -118,8 +140,6 @@ function ListTransaction({ transactions, setTransactionIndex }) {
       </div>
     );
   };
-
   return <div>{renderTransactions()}</div>;
 }
-
 export default memo(ListTransaction);

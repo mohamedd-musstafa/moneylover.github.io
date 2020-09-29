@@ -79,7 +79,7 @@ export default function Login() {
   return (
     <div className="wrapper">
       <div className="top-background">
-        <img alt="depositIcon" src={depositIcon} className="deposit-icon"></img>
+        <img alt="depositIcon" src={depositIcon} className="deposit-icon" />
         <div className="header-name">Money Lover</div>
       </div>
       <div className="form-login">
@@ -128,7 +128,7 @@ export default function Login() {
               onClick={togglePasswordVisibility}
               className="eyeLogin"
               src={passwordShown ? eyeSlashIcon : eyeIcon}
-            ></img>
+            />
           </div>
           <button
             type="submit"

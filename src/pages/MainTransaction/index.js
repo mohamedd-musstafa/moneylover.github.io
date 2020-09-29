@@ -1,8 +1,15 @@
 import moment from "moment";
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import BillIcon from "../../assets/images/bill.png";
 // import { deleteTransaction } from "../../actions/transactions";
 import closeIcon from "../../assets/images/close-icon.png";
+import FoodDrink from "../../assets/images/food-drink.png";
+import GiftIcon from "../../assets/images/gift.png";
+import OtherIcon from "../../assets/images/money-other.png";
+import SalaryIcon from "../../assets/images/money-salary.png";
+import SellIcon from "../../assets/images/sell.png";
+import Transportation from "../../assets/images/transportation.png";
 import Transaction from "./components/AddTransaction/Transaction";
 import Delete from "./components/Delete";
 import TabTransaction from "./components/TabTransaction";
@@ -11,6 +18,16 @@ import "./transaction.css";
 // import Details from "./components/Details";
 
 const selector = ({ transactions }) => transactions;
+
+const categoryImages = {
+  RESTAURANT: BillIcon,
+  SHOPPING: Transportation,
+  TRANSPORTATION: FoodDrink,
+  OTHERS: OtherIcon,
+  SALARY: SalaryIcon,
+  FREELANCE: GiftIcon,
+  INVESTMENT: SellIcon,
+};
 
 export default function MainTraction() {
   const [isPopupConfirmOpen, setIsPopupConfirmOpen] = useState(false);
@@ -22,9 +39,24 @@ export default function MainTraction() {
   const dispatch = useDispatch();
   const [isEditTransactionOpen, setIsEditTransactionOpen] = useState(false);
   const [transaction, setTransaction] = useState(undefined);
+  const [styleDiv, setStyleDiv] = useState();
   const onEdit = (tran) => () => {
     setIsEditTransactionOpen(true);
     setTransaction(tran);
+  };
+  const changeDivTransactionDetail = () => {
+    setStyleDiv();
+    const x = document.getElementById("hidden-transaction-detail");
+    if (x.style.display === "none") {
+      x.style.display = "block";
+    } else {
+      x.style.display = "none";
+    }
+    const y = document.getElementById("transactions");
+    if (styleDiv !== 0) {
+      y.style.margin = "50px auto";
+      y.style.width = "55%";
+    }
   };
   const renderTransactionDetail = () => {
     const trans = transactions.find(({ id }) => transactionIndex === id);
@@ -41,7 +73,7 @@ export default function MainTraction() {
               isOpen={isPopupConfirmOpen}
               onRequestClose={onClosePopupConfirmModal}
             />
-            <div id="close-div">
+            <div onClick={changeDivTransactionDetail}>
               <img alt="icon" className="img-detail" src={closeIcon} />
               <span className="text-detail">Transaction Details</span>
             </div>
@@ -64,10 +96,17 @@ export default function MainTraction() {
           </div>
           <hr className="line" />
           <div className="transactions-random-detail">
+            <div className="icon-transactions-detail-div">
+              <img
+                alt="icon"
+                src={categoryImages[category]}
+                className="icon-transaction-detail"
+              />
+            </div>
             <div className="transactions-div">
               <span className="category-in-detail">{category}</span>
-              <span className="day-transactions">{displayDate}</span>
-              <hr className="line-10"></hr>
+              <span className="day-transactions-detail">{displayDate}</span>
+              <hr className="line-10" />
               <div className="description-and-amount">
                 <span className="desc-transactions">{description}</span>{" "}
                 <span className="transactions-bill-number-day">{amount} ₫</span>
@@ -90,14 +129,14 @@ export default function MainTraction() {
         transaction={transaction}
       />
       <Topbar setTimeShifted={setTimeShifted} />
-      <div className="transactions">
+      <div id="transactions">
         <TabTransaction
           timeShifted={timeShifted}
           setTimeShifted={setTimeShifted}
           setTransactionIndex={setTransactionIndex}
         />
       </div>
-      <div>{renderTransactionDetail()}</div>
+      <div id="hidden-transaction-detail">{renderTransactionDetail()}</div>
       {/* <Details /> */}
     </div>
   );

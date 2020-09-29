@@ -8,11 +8,8 @@ export default function Topbar({ setTimeShifted }) {
   // const balance = localStorage.getItem("balance");
   const firstName = localStorage.getItem("firstName");
   const [isNewTransactionOpen, setIsNewTransactionOpen] = useState(false);
-
   const onOpenAddNewTransactionModal = () => setIsNewTransactionOpen(true);
-
   const onCloseAddNewTransactionModal = () => setIsNewTransactionOpen(false);
-
   const onJumpToday = () => {
     setTimeShifted(0);
   };
