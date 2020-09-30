@@ -1,5 +1,6 @@
 .homepage {
-  max-height: 100%;
+  min-height: 100vh;
+  /* max-height: 100%; */
   background: #000000;
   /* height: 1024px; */
 }
