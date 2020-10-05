@@ -1,13 +1,18 @@
 import React, { useState } from "react";
 import search from "../../../assets/images/search.png";
 import transaction from "../../../assets/images/transaction.png";
+import category from "../../../assets/images/category.png";
 import avatar from "../../../assets/images/user.png";
 import Transaction from "./AddTransaction/Transaction";
 
-export default function Topbar({ setTimeShifted }) {
+export default function Topbar({ setTimeShifted, setViewBy }) {
   // const balance = localStorage.getItem("balance");
   const firstName = localStorage.getItem("firstName");
   const [isNewTransactionOpen, setIsNewTransactionOpen] = useState(false);
+  const [buttonClickBehavior, setButtonClickBehavior] = useState(false);
+  const onChangeButtonViewBy = () => {
+    setButtonClickBehavior(buttonClickBehavior !== true);
+  };
   const onOpenAddNewTransactionModal = () => setIsNewTransactionOpen(true);
   const onCloseAddNewTransactionModal = () => setIsNewTransactionOpen(false);
   const onJumpToday = () => {
@@ -39,10 +44,27 @@ export default function Topbar({ setTimeShifted }) {
           <span className="tooltiptext">Jump to today</span>
           TODAY
         </button>
-        <button type="button" className="view-transactions tooltip">
-          <img alt="View Transaction" src={transaction} />
-          <span className="tooltiptext">View by category</span>
-        </button>
+        <div onClick={onChangeButtonViewBy} className="button-change-view">
+          {buttonClickBehavior ? (
+            <button
+              onClick={() => setViewBy("Category")}
+              type="button"
+              className="view-transactions-by-category tooltip"
+            >
+              <img alt="View Transaction" src={category} />
+              <span className="tooltiptext">View by category</span>
+            </button>
+          ) : (
+            <button
+              type="button"
+              className="view-transactions-by-transaction tooltip"
+              onClick={() => setViewBy("Date")}
+            >
+              <img alt="View Transaction" src={transaction} />
+              <span className="tooltiptext">View by transaction</span>
+            </button>
+          )}
+        </div>
         <button type="button" className="search-transactions tooltip">
           <img alt="Search Transaction" src={search} />
           <span className="tooltiptext">Search for transaction</span>

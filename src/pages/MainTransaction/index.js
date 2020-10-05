@@ -1,6 +1,6 @@
 import moment from "moment";
 import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import BillIcon from "../../assets/images/bill.png";
 // import { deleteTransaction } from "../../actions/transactions";
 import closeIcon from "../../assets/images/close-icon.png";
@@ -36,9 +36,9 @@ export default function MainTraction() {
   const [timeShifted, setTimeShifted] = useState(0);
   const [transactionIndex, setTransactionIndex] = useState(undefined);
   const transactions = useSelector(selector);
-  const dispatch = useDispatch();
   const [isEditTransactionOpen, setIsEditTransactionOpen] = useState(false);
   const [transaction, setTransaction] = useState(undefined);
+  const [viewBy, setViewBy] = useState("Category");
   const [styleDiv, setStyleDiv] = useState();
   const onEdit = (tran) => () => {
     setIsEditTransactionOpen(true);
@@ -46,23 +46,24 @@ export default function MainTraction() {
   };
   const changeDivTransactionDetail = () => {
     setStyleDiv();
-    const x = document.getElementById("hidden-transaction-detail");
-    if (x.style.display === "none") {
-      x.style.display = "block";
+    const hiddenTransactionDe = document.getElementById(
+      "hidden-transaction-detail"
+    );
+    if (hiddenTransactionDe.style.display === "none") {
+      hiddenTransactionDe.style.display = "block";
     } else {
-      x.style.display = "none";
+      hiddenTransactionDe.style.display = "none";
     }
-    const y = document.getElementById("transactions");
+    const transactionsStyle = document.getElementById("transactions");
     if (styleDiv !== 0) {
-      y.style.margin = "50px auto";
-      y.style.width = "55%";
+      transactionsStyle.style.margin = "50px auto 0px auto";
+      transactionsStyle.style.width = "55%";
     }
   };
   const renderTransactionDetail = () => {
     const trans = transactions.find(({ id }) => transactionIndex === id);
     if (trans) {
       const { id, date, amount, description, category } = trans;
-      const dayOfMonth = moment(date).date();
       const displayDate = moment(date).format("dddd, MMMM Do YYYY");
 
       return (
@@ -73,7 +74,7 @@ export default function MainTraction() {
               isOpen={isPopupConfirmOpen}
               onRequestClose={onClosePopupConfirmModal}
             />
-            <div onClick={changeDivTransactionDetail}>
+            <div id="close-div" onClick={changeDivTransactionDetail}>
               <img alt="icon" className="img-detail" src={closeIcon} />
               <span className="text-detail">Transaction Details</span>
             </div>
@@ -128,12 +129,13 @@ export default function MainTraction() {
         type="edit"
         transaction={transaction}
       />
-      <Topbar setTimeShifted={setTimeShifted} />
+      <Topbar setViewBy={setViewBy} setTimeShifted={setTimeShifted} />
       <div id="transactions">
         <TabTransaction
           timeShifted={timeShifted}
           setTimeShifted={setTimeShifted}
           setTransactionIndex={setTransactionIndex}
+          viewBy={viewBy}
         />
       </div>
       <div id="hidden-transaction-detail">{renderTransactionDetail()}</div>

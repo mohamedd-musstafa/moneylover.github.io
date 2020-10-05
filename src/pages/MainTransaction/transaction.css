@@ -65,12 +65,19 @@
   font-size: 14px;
   color: #3d753e;
 }
-.view-transactions {
+.view-transactions-by-category {
   border: 0;
   padding: 0;
   margin-right: 20px;
   background-color: white;
 }
+.view-transactions-by-transaction {
+  border: 0;
+  padding: 0;
+  margin-right: 20px;
+  background-color: white;
+}
+
 .search-transactions {
   border: 0;
   padding: 0;
@@ -182,7 +189,18 @@
 .transactions-by-category {
   padding: 25px 50px;
 }
+.transactions-by-date {
+  padding: 25px 50px;
+}
 .category-transactions {
+  /* width: 623px; */
+  padding-bottom: 25px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.date-transactions {
   /* width: 623px; */
   padding-bottom: 25px;
   display: flex;
@@ -290,12 +308,28 @@
   outline: none;
   visibility: visible;
 }
+
+.tooltip.hover .tooltiptext:focus {
+  outline: none;
+  visibility: visible;
+}
+
 .view-today:focus {
   outline: none;
 }
-.view-transactions:focus {
+.view-transactions-by-category:hover {
+  cursor: pointer;
+}
+.view-transactions-by-category:focus {
   outline: none;
 }
+.view-transactions-by-transaction:hover {
+  cursor: pointer;
+}
+.view-transactions-by-transaction:focus {
+  outline: none;
+}
+
 .search-transactions:focus {
   outline: none;
 }
@@ -322,7 +356,7 @@
   background: #1c1c1d;
   box-shadow: 0px 3px 20px 5px rgba(0, 0, 0, 0.1);
   border-radius: 20px;
-  top: 12.5%;
+  top: 15.5%;
   right: 72px;
 }
 
@@ -422,4 +456,17 @@
   font-weight: 500;
   font-size: 18px;
   color: #979797;
+}
+
+.category-transactions-biil {
+  width: 40px;
+  height: 40px;
+  margin-right: 25px;
+}
+.date-transactions-desc {
+  display: flex;
+  align-items: center;
+}
+.button-change-view:hover {
+  cursor: pointer;
 }

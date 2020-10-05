@@ -8,7 +8,7 @@ import { useDispatch } from "react-redux";
 import "react-tabs/style/react-tabs.css";
 import {
   addTransaction,
-  editTransaction
+  editTransaction,
 } from "../../../../actions/transactions";
 import LeftArrowIcon from "../../../../assets/images/left-arrow.png";
 import Category from "./Category";

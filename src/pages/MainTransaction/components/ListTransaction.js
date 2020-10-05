@@ -1,3 +1,4 @@
+import _ from "lodash";
 import moment from "moment";
 import React, { memo, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
@@ -20,7 +21,13 @@ const categoryImages = {
   INVESTMENT: SellIcon,
 };
 
-function ListTransaction({ transactions, setTransactionIndex }) {
+function ListTransaction({
+  transactions,
+  setTransactionIndex,
+  viewBy,
+  setStateTabChanged,
+}) {
+  console.log("ListTransaction -> ViewBy", viewBy);
   const inflow = transactions.filter(
     ({ type }) => type.toUpperCase() === "INCOME"
   );
@@ -30,8 +37,14 @@ function ListTransaction({ transactions, setTransactionIndex }) {
   const totalInflow = inflow.reduce((total, { amount }) => total + amount, 0);
   const totalOutflow = outflow.reduce((total, { amount }) => total + amount, 0);
   const [styleDiv, setStyleDiv] = useState();
+  const onTabChanged = () => {
+    // setStateTabChanged(true);
+  };
+  // const [stateToggle, setStateToggle] = useState(false);
+  // const onChangeTab = () => setStateToggle(true);
   const onViewDetail = (index) => () => {
     setTransactionIndex(index);
+    console.log("haha");
     setStyleDiv();
     const x = document.getElementById("hidden-transaction-detail");
     if (x.style.display === "none") {
@@ -60,7 +73,7 @@ function ListTransaction({ transactions, setTransactionIndex }) {
         0
       );
       return (
-        <div className="transactions-by-transactions" key={uuidv4()}>
+        <div className="transactions-by-category" key={uuidv4()}>
           <div className="category-transactions">
             <div className="transactions-desc">
               <img
@@ -89,6 +102,7 @@ function ListTransaction({ transactions, setTransactionIndex }) {
                   className="transactions-random"
                   key={id}
                   onClick={onViewDetail(id)}
+                  // onChange={onTabChanged}
                 >
                   <div className="transactions-desc">
                     <span className="day-transactions-bill">{dayOfMonth}</span>
@@ -112,6 +126,90 @@ function ListTransaction({ transactions, setTransactionIndex }) {
       );
     });
   };
+  const renderTransactionsByDate = () => {
+    const transformedTransactions = _.groupBy(transactions, ({ date }) =>
+      moment(date).startOf("date").toISOString()
+    );
+
+    return (
+      <div className="day-transactions">
+        {Object.keys(transformedTransactions).map((time) => {
+          const dayInflow = transformedTransactions[time].filter(
+            ({ type }) => type.toUpperCase() === "INCOME"
+          );
+          const dayOutflow = transformedTransactions[time].filter(
+            ({ type }) => type.toUpperCase() === "EXPENSE"
+          );
+          const totalDayInflow = dayInflow.reduce(
+            (total, { amount }) => total + amount,
+            0
+          );
+          const totalDayOutflow = dayOutflow.reduce(
+            (total, { amount }) => total + amount,
+            0
+          );
+          const totalInOutFlow = totalDayInflow - totalDayOutflow;
+          const dayOfMonth = moment(time).date();
+          const displayDate = moment(time).format("dddd, MMMM Do YYYY");
+
+          return (
+            <div className="transactions-by-date" key={time}>
+              <div className="date-transactions">
+                <div className="date-transactions-desc">
+                  <span className="day-transactions-bill">{dayOfMonth}</span>
+                  <span className="day-transactions">{displayDate}</span>
+                </div>
+                <span className="transactions-bill-number-day">
+                  {totalInOutFlow} ₫
+                </span>
+              </div>
+              <hr className="line-3" />
+              {transformedTransactions[time].map(
+                ({ id, amount, description, category, type }) => (
+                  <div key={id}>
+                    <div
+                      className="transactions-random"
+                      onClick={onViewDetail(id)}
+                    >
+                      <div className="transactions-desc">
+                        <img
+                          alt="Category"
+                          className="category-transactions-biil"
+                          src={categoryImages[category]}
+                        />
+                        <div className="transactions-div">
+                          <span className="">{category}</span>
+                          <span className="desc-transactions">
+                            Description: {description}
+                          </span>
+                        </div>
+                      </div>
+                      <span className="transactions-bill-number-day">
+                        {amount} ₫
+                      </span>
+                    </div>
+                  </div>
+                )
+              )}
+            </div>
+          );
+        })}
+      </div>
+    );
+  };
+
+  const renderTractionType = () => {
+    if (viewBy === "Category") {
+      return (
+        <div>
+          {renderTransactionsByCategory(inflow)}
+          {renderTransactionsByCategory(outflow)}
+        </div>
+      );
+    }
+    return renderTransactionsByDate();
+  };
+
   const renderTransactions = () => {
     if (transactions.length === 0) {
       return <NoTransaction />;
@@ -135,8 +233,9 @@ function ListTransaction({ transactions, setTransactionIndex }) {
           </div>
         </div>
         <hr className="rectangle" />
-        {renderTransactionsByCategory(inflow)}
-        {renderTransactionsByCategory(outflow)}
+        {/* {renderTransactionsByCategory(inflow)}
+        {renderTransactionsByCategory(outflow)} */}
+        {renderTractionType()}
       </div>
     );
   };

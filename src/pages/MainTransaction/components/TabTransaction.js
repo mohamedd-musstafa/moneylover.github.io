@@ -47,7 +47,12 @@ const Panel = createClass({
 
 const selector = ({ transactions }) => transactions;
 
-function TabTransaction({ timeShifted, setTimeShifted, setTransactionIndex }) {
+function TabTransaction({
+  timeShifted,
+  setTimeShifted,
+  setTransactionIndex,
+  viewBy,
+}) {
   const dispatch = useDispatch();
   const transactions = useSelector(selector);
   const [tabSelected, setTabSelected] = useState(1);
@@ -127,6 +132,15 @@ function TabTransaction({ timeShifted, setTimeShifted, setTransactionIndex }) {
     };
   }, [timeShifted, transactions]);
 
+  const [stateTabChanged, setStateTabChanged] = useState(false);
+
+  const renderTabChanged = () => {
+    if (stateTabChanged) {
+      return <div className="">1</div>;
+    }
+    return <div className="">2</div>;
+  };
+
   return (
     <Tabs tabSelected={tabSelected} onTabChange={onTabChange}>
       <Panel
@@ -137,6 +151,7 @@ function TabTransaction({ timeShifted, setTimeShifted, setTransactionIndex }) {
         <ListTransaction
           transactions={splitTransactions.lastTabMonthTransactions}
           setTransactionIndex={setTransactionIndex}
+          viewBy={viewBy}
         />
       </Panel>
       <Panel
@@ -147,6 +162,7 @@ function TabTransaction({ timeShifted, setTimeShifted, setTransactionIndex }) {
         <ListTransaction
           transactions={splitTransactions.thisTabMonthTransactions}
           setTransactionIndex={setTransactionIndex}
+          viewBy={viewBy}
         />
       </Panel>
       <Panel
@@ -157,6 +173,7 @@ function TabTransaction({ timeShifted, setTimeShifted, setTransactionIndex }) {
         <ListTransaction
           transactions={splitTransactions.nextTabMonthTransactions}
           setTransactionIndex={setTransactionIndex}
+          viewBy={viewBy}
         />
       </Panel>
     </Tabs>
