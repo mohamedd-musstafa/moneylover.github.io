@@ -12,11 +12,14 @@ const addTransactionReducer = (state = [], action) => {
       });
     }
     case "DELETE_TRANSACTION": {
-      const test = state.filter(({ id }) => id !== action.payload);
-      console.log(test, action.payload);
+      const transactionDelete = state.filter(({ id }) => id !== action.payload);
+      console.log(transactionDelete, action.payload);
 
-      return test;
+      return transactionDelete;
     }
+    // case "EDIT_TRANSACTION": {
+    //   console.log("hahaha");
+    // }
     default:
       return state;
   }

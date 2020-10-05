@@ -26,6 +26,7 @@ function ListTransaction({
   setTransactionIndex,
   viewBy,
   setStateTabChanged,
+  typeCategory,
 }) {
   console.log("ListTransaction -> ViewBy", viewBy);
   const inflow = transactions.filter(
@@ -115,9 +116,18 @@ function ListTransaction({
                       </span>
                     </div>
                   </div>
-                  <span className="transactions-bill-number-day">
+                  {/* <span className="transactions-bill-number-day">
                     {amount} ₫
-                  </span>
+                  </span> */}
+                  {typeCategory === category ? (
+                    <span className="transactions-bill-number-day-out">
+                      {amount} ₫
+                    </span>
+                  ) : (
+                    <span className="transactions-bill-number-day-in">
+                      {amount} ₫
+                    </span>
+                  )}
                 </div>
               );
             })}
@@ -159,7 +169,7 @@ function ListTransaction({
                   <span className="day-transactions-bill">{dayOfMonth}</span>
                   <span className="day-transactions">{displayDate}</span>
                 </div>
-                <span className="transactions-bill-number-day">
+                <span className="transactions-bill-number-day-total">
                   {totalInOutFlow} ₫
                 </span>
               </div>
@@ -184,9 +194,18 @@ function ListTransaction({
                           </span>
                         </div>
                       </div>
-                      <span className="transactions-bill-number-day">
+                      {/* <span className="transactions-bill-number-day">
                         {amount} ₫
-                      </span>
+                      </span> */}
+                      {typeCategory ? (
+                        <span className="transactions-bill-number-day-out">
+                          {amount} ₫
+                        </span>
+                      ) : (
+                        <span className="transactions-bill-number-day-in">
+                          {amount} ₫
+                        </span>
+                      )}
                     </div>
                   </div>
                 )
@@ -233,8 +252,6 @@ function ListTransaction({
           </div>
         </div>
         <hr className="rectangle" />
-        {/* {renderTransactionsByCategory(inflow)}
-        {renderTransactionsByCategory(outflow)} */}
         {renderTractionType()}
       </div>
     );

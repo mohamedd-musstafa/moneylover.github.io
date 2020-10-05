@@ -17,6 +17,7 @@ function Delete({ isOpen, onRequestClose, id }) {
   const transactions = useSelector(selector);
   const onDelete = (id) => () => {
     dispatch(deleteTransaction(id));
+    onRequestClose();
   };
   return (
     <>
@@ -36,10 +37,7 @@ function Delete({ isOpen, onRequestClose, id }) {
             <button onClick={onRequestClose} className="btn-delete-no">
               <span className="btn-no-delete-text">NO</span>
             </button>
-            <button
-              onClick={onDelete(id)}
-              className="btn-delete-yes"
-            >
+            <button onClick={onDelete(id)} className="btn-delete-yes">
               <span className="btn-yes-delete-text">YES</span>
             </button>
           </div>

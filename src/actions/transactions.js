@@ -118,7 +118,6 @@ const editTransaction = (
 const deleteTransaction = (id) => async (dispatch, _getState, api) => {
   try {
     const requestSource = axios.CancelToken.source();
-
     const test = await api(requestSource).delete(`/transactions/v1.0/${id}`);
 
     console.log(test);

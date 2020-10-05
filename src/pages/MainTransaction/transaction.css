@@ -278,11 +278,20 @@
   margin-bottom: 20px;
   color: #979797;
 }
-.transactions-bill-number-day {
+.transactions-bill-number-day-out {
   /* width: 99px; */
   font-weight: 500;
   font-size: 18px;
   color: #e55a5a;
+}
+.transactions-bill-number-day-in{
+font-weight:  500;
+font-size:18px;
+color:  #039BE5;
+}
+.transactions-bill-number-day-total {
+  font-weight: 500;
+  font-size: 18px;
 }
 .tooltip {
   position: relative;

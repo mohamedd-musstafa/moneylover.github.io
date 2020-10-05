@@ -60,7 +60,7 @@ export default function MainTraction() {
       transactionsStyle.style.width = "55%";
     }
   };
-  const renderTransactionDetail = () => {
+  const renderTransactionDetail = (typeCategory) => {
     const trans = transactions.find(({ id }) => transactionIndex === id);
     if (trans) {
       const { id, date, amount, description, category } = trans;
@@ -110,7 +110,16 @@ export default function MainTraction() {
               <hr className="line-10" />
               <div className="description-and-amount">
                 <span className="desc-transactions">{description}</span>{" "}
-                <span className="transactions-bill-number-day">{amount} ₫</span>
+                {/* <span className="transactions-bill-number-day">{amount} ₫</span> */}
+                {typeCategory ? (
+                  <span className="transactions-bill-number-day-out">
+                    {amount} ₫
+                  </span>
+                ) : (
+                  <span className="transactions-bill-number-day-in">
+                    {amount} ₫
+                  </span>
+                )}
               </div>
             </div>
           </div>
