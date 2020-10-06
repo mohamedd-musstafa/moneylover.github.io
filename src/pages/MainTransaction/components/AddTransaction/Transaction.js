@@ -88,7 +88,6 @@ function Transaction({ type, transaction, isOpen, onRequestClose }) {
 
   useEffect(() => {
     if (type === "edit" && transaction) {
-      console.log(type, transaction);
       const category = transaction.type.toLowerCase();
 
       setState((prevData) => ({
@@ -118,8 +117,6 @@ function Transaction({ type, transaction, isOpen, onRequestClose }) {
     }));
     setIsCategoryOpen(false);
     setCategoryText(category);
-
-    console.log(category, typeCategory);
   };
   return (
     <>

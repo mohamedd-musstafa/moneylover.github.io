@@ -46,21 +46,22 @@ export default function MainTraction() {
   };
   const changeDivTransactionDetail = () => {
     setStyleDiv();
-    const hiddenTransactionDe = document.getElementById(
-      "hidden-transaction-detail"
+    setTransactionIndex(undefined);
+    const hiddenTransactionDe = document.querySelector(
+      "#hidden-transaction-detail"
     );
     if (hiddenTransactionDe.style.display === "none") {
       hiddenTransactionDe.style.display = "block";
     } else {
       hiddenTransactionDe.style.display = "none";
     }
-    const transactionsStyle = document.getElementById("transactions");
+    const transactionsStyle = document.querySelector("#transactions");
     if (styleDiv !== 0) {
       transactionsStyle.style.margin = "50px auto 0px auto";
       transactionsStyle.style.width = "55%";
     }
   };
-  const renderTransactionDetail = (typeCategory) => {
+  const renderTransactionDetail = (type) => {
     const trans = transactions.find(({ id }) => transactionIndex === id);
     if (trans) {
       const { id, date, amount, description, category } = trans;
@@ -71,6 +72,7 @@ export default function MainTraction() {
           <div className="top-wrap-detail">
             <Delete
               id={id}
+              setTransactionIndex={setTransactionIndex}
               isOpen={isPopupConfirmOpen}
               onRequestClose={onClosePopupConfirmModal}
             />
@@ -111,7 +113,7 @@ export default function MainTraction() {
               <div className="description-and-amount">
                 <span className="desc-transactions">{description}</span>{" "}
                 {/* <span className="transactions-bill-number-day">{amount} ₫</span> */}
-                {typeCategory ? (
+                {type ? (
                   <span className="transactions-bill-number-day-out">
                     {amount} ₫
                   </span>
@@ -143,6 +145,7 @@ export default function MainTraction() {
         <TabTransaction
           timeShifted={timeShifted}
           setTimeShifted={setTimeShifted}
+          transactionIndex={transactionIndex}
           setTransactionIndex={setTransactionIndex}
           viewBy={viewBy}
         />

@@ -1,7 +1,6 @@
 const addTransactionReducer = (state = [], action) => {
   switch (action.type) {
     case "LIST_TRANSACTION":
-      console.log(action.payload);
       return action.payload;
     case "ADD_TRANSACTION": {
       return [...state, action.payload].sort((a, b) => {
@@ -12,14 +11,17 @@ const addTransactionReducer = (state = [], action) => {
       });
     }
     case "DELETE_TRANSACTION": {
-      const transactionDelete = state.filter(({ id }) => id !== action.payload);
-      console.log(transactionDelete, action.payload);
-
-      return transactionDelete;
+      return state.filter(({ id }) => id !== action.payload);
     }
-    // case "EDIT_TRANSACTION": {
-    //   console.log("hahaha");
-    // }
+    case "EDIT_TRANSACTION": {
+      const index = state.findIndex(({ id }) => id === action.payload.id);
+
+      if (index !== -1) {
+        state[index] = action.payload;
+        return [...state];
+      }
+      return state;
+    }
     default:
       return state;
   }

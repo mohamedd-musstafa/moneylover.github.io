@@ -13,7 +13,7 @@ const Tabs = createClass({
         <ul className="inline">
           {this.props.children.map((element, index) => {
             const style = index === this.props.tabSelected ? "selected" : "";
-            return (
+            return element ? (
               <li
                 className={style}
                 key={index}
@@ -25,7 +25,7 @@ const Tabs = createClass({
               >
                 {element.props.title}
               </li>
-            );
+            ) : undefined;
           })}
         </ul>
         <hr className="line-1" />
@@ -50,6 +50,7 @@ const selector = ({ transactions }) => transactions;
 function TabTransaction({
   timeShifted,
   setTimeShifted,
+  transactionIndex,
   setTransactionIndex,
   viewBy,
 }) {
@@ -132,15 +133,6 @@ function TabTransaction({
     };
   }, [timeShifted, transactions]);
 
-  const [stateTabChanged, setStateTabChanged] = useState(false);
-
-  const renderTabChanged = () => {
-    if (stateTabChanged) {
-      return <div className="">1</div>;
-    }
-    return <div className="">2</div>;
-  };
-
   return (
     <Tabs tabSelected={tabSelected} onTabChange={onTabChange}>
       <Panel
@@ -165,17 +157,19 @@ function TabTransaction({
           viewBy={viewBy}
         />
       </Panel>
-      <Panel
-        title={splitTransactions.nextTabMonthTimeText}
-        className="this-month-transactions-calendars"
-        targetTime={splitTransactions.nextTabMonthTime}
-      >
-        <ListTransaction
-          transactions={splitTransactions.nextTabMonthTransactions}
-          setTransactionIndex={setTransactionIndex}
-          viewBy={viewBy}
-        />
-      </Panel>
+      {!transactionIndex ? (
+        <Panel
+          title={splitTransactions.nextTabMonthTimeText}
+          className="this-month-transactions-calendars"
+          targetTime={splitTransactions.nextTabMonthTime}
+        >
+          <ListTransaction
+            transactions={splitTransactions.nextTabMonthTransactions}
+            setTransactionIndex={setTransactionIndex}
+            viewBy={viewBy}
+          />
+        </Panel>
+      ) : undefined}
     </Tabs>
   );
 }

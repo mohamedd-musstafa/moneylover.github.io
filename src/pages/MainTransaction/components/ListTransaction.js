@@ -2,7 +2,7 @@ import _ from "lodash";
 import moment from "moment";
 import React, { memo, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
-import { default as BillIcon } from "../../../assets/images/bill.png";
+import BillIcon from "../../../assets/images/bill.png";
 import FoodDrink from "../../../assets/images/food-drink.png";
 import GiftIcon from "../../../assets/images/gift.png";
 import OtherIcon from "../../../assets/images/money-other.png";
@@ -25,10 +25,8 @@ function ListTransaction({
   transactions,
   setTransactionIndex,
   viewBy,
-  setStateTabChanged,
   typeCategory,
 }) {
-  console.log("ListTransaction -> ViewBy", viewBy);
   const inflow = transactions.filter(
     ({ type }) => type.toUpperCase() === "INCOME"
   );
@@ -38,25 +36,21 @@ function ListTransaction({
   const totalInflow = inflow.reduce((total, { amount }) => total + amount, 0);
   const totalOutflow = outflow.reduce((total, { amount }) => total + amount, 0);
   const [styleDiv, setStyleDiv] = useState();
-  const onTabChanged = () => {
-    // setStateTabChanged(true);
-  };
-  // const [stateToggle, setStateToggle] = useState(false);
-  // const onChangeTab = () => setStateToggle(true);
+
   const onViewDetail = (index) => () => {
     setTransactionIndex(index);
-    console.log("haha");
     setStyleDiv();
-    const x = document.getElementById("hidden-transaction-detail");
+    const x = document.querySelector("#hidden-transaction-detail");
     if (x.style.display === "none") {
       x.style.display = "block";
     }
-    const y = document.getElementById("transactions");
+    const y = document.querySelector("#transactions");
     if (styleDiv !== 0) {
       y.style.marginLeft = "72px";
       y.style.width = "660px";
     }
   };
+
   const renderTransactionsByCategory = (transactionsByType) => {
     const categories = transactionsByType.reduce((group, transaction) => {
       const { category } = transaction;
@@ -95,42 +89,42 @@ function ListTransaction({
           </div>
           <hr className="line-3" />
           <div className="day-transactions">
-            {categories[category].map(({ id, date, amount, description }) => {
-              const dayOfMonth = moment(date).date();
-              const displayDate = moment(date).format("dddd, MMMM Do YYYY");
-              return (
-                <div
-                  className="transactions-random"
-                  key={id}
-                  onClick={onViewDetail(id)}
-                  // onChange={onTabChanged}
-                >
-                  <div className="transactions-desc">
-                    <span className="day-transactions-bill">{dayOfMonth}</span>
-                    <div className="transactions-div">
-                      <span className="day-transactions-list">
-                        {displayDate}
+            {categories[category].map(
+              ({ id, date, amount, description, type }) => {
+                const dayOfMonth = moment(date).date();
+                const displayDate = moment(date).format("dddd, MMMM Do YYYY");
+                return (
+                  <div
+                    className="transactions-random"
+                    key={id}
+                    onClick={onViewDetail(id)}
+                  >
+                    <div className="transactions-desc">
+                      <span className="day-transactions-bill">
+                        {dayOfMonth}
                       </span>
-                      <span className="desc-transactions">
-                        Description: {description}
-                      </span>
+                      <div className="transactions-div">
+                        <span className="day-transactions-list">
+                          {displayDate}
+                        </span>
+                        <span className="desc-transactions">
+                          Description: {description}
+                        </span>
+                      </div>
                     </div>
+                    {type === "EXPENSE" ? (
+                      <span className="transactions-bill-number-day-out">
+                        {amount} ₫
+                      </span>
+                    ) : (
+                      <span className="transactions-bill-number-day-in">
+                        {amount} ₫
+                      </span>
+                    )}
                   </div>
-                  {/* <span className="transactions-bill-number-day">
-                    {amount} ₫
-                  </span> */}
-                  {typeCategory === category ? (
-                    <span className="transactions-bill-number-day-out">
-                      {amount} ₫
-                    </span>
-                  ) : (
-                    <span className="transactions-bill-number-day-in">
-                      {amount} ₫
-                    </span>
-                  )}
-                </div>
-              );
-            })}
+                );
+              }
+            )}
           </div>
         </div>
       );
@@ -194,10 +188,7 @@ function ListTransaction({
                           </span>
                         </div>
                       </div>
-                      {/* <span className="transactions-bill-number-day">
-                        {amount} ₫
-                      </span> */}
-                      {typeCategory ? (
+                      {type === "EXPENSE" ? (
                         <span className="transactions-bill-number-day-out">
                           {amount} ₫
                         </span>

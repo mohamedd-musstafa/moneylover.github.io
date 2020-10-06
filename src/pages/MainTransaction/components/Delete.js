@@ -12,10 +12,11 @@ Modal.setAppElement("#root");
 
 const selector = ({ transactions }) => transactions;
 
-function Delete({ isOpen, onRequestClose, id }) {
+function Delete({ isOpen, onRequestClose, setTransactionIndex, id }) {
   const dispatch = useDispatch();
   const transactions = useSelector(selector);
   const onDelete = (id) => () => {
+    setTransactionIndex(undefined);
     dispatch(deleteTransaction(id));
     onRequestClose();
   };
