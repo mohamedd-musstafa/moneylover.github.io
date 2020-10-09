@@ -7,6 +7,15 @@
   transform: rotate(-0.06deg);
 }
 
+.line-detail {
+  margin-top: 15px;
+  /* margin: 0; */
+  margin-bottom: 28px;
+  /* width: 623px; */
+  border: 1px solid rgba(196, 196, 196, 0.5);
+  transform: rotate(-0.06deg);
+}
+
 .custom-style {
   /* margin-bottom: 30px; */
   position: absolute;
@@ -373,10 +382,6 @@ li {
   width: 320px;
 }
 
-.ul-type-transaction {
-  padding: 0;
-}
-
 .btn-type-transaction {
   border: 0;
   padding: 0;
@@ -412,14 +417,6 @@ li {
 }
 .ReactModal__Overlay {
   background-color: rgba(255, 255, 255, 0.4) !important;
-}
-.ReactModal__Overlay--after-open {
-  /* position: fixed;
-  top: 0px;
-  left: 0px;
-  right: 0px;
-  bottom: 0px;
-  background-color: rgba(255, 255, 255, 0.4); */
 }
 
 .div-delete-wrap {
@@ -509,4 +506,71 @@ li {
   margin-left: 20px;
   display: flex;
   flex-direction: row;
+}
+
+.datepicker-dialog {
+  width: 256px;
+  height: 56px;
+  background: rgba(196, 196, 196, 0.5);
+  border-radius: 5px;
+}
+
+.MuiFormControl-marginNormal {
+  margin: 0 !important;
+}
+
+#date-picker-dialog-label {
+  margin: 5px 0 0 15px;
+  color: rgba(255, 255, 255, 0.5);
+  /* visibility: hidden;
+  text-indent: -130px; */
+}
+.MuiInputBase-input {
+  color: #ffffff !important;
+  height: 21px !important;
+  margin-left: 15px !important;
+}
+.MuiPickersModal-dialogRoot {
+  min-width: 623px !important;
+  /* min-height: 546px !important; */
+  box-shadow: 0px 3px 20px 5px rgba(0, 0, 0, 0.1) !important;
+  border-radius: 20px !important;
+}
+.MuiDialogActions-root {
+  background: #1c1c1d !important;
+}
+.MuiPickersBasePicker-container {
+  background: #1c1c1d !important;
+}
+.MuiPickersToolbar-toolbar {
+  background: #1c1c1d !important;
+}
+.MuiTypography-colorInherit {
+  color: #ffffff !important;
+}
+.MuiTypography-body1 {
+  color: #ffffff !important;
+  /* width: 113px !important;
+  height: 23px !important; */
+}
+.MuiPickersBasePicker-pickerView {
+  max-width: 100% !important;
+  padding: 30px 30px 40px 30px !important;
+}
+.MuiPickersCalendarHeader-dayLabel {
+  color: #ffffff !important;
+}
+.MuiPickersCalendarHeader-iconButton {
+  background-color: transparent !important;
+}
+.MuiPickersDay-daySelected {
+  background: #3d753e !important;
+}
+.MuiPickersDay-day:hover {
+  cursor: pointer !important;
+  background: rgba(61, 117, 62, 0.2) !important;
+}
+
+.MuiSvgIcon-root {
+  color: #ffffff !important;
 }

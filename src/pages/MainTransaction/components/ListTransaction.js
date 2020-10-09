@@ -25,7 +25,6 @@ function ListTransaction({
   transactions,
   setTransactionIndex,
   viewBy,
-  typeCategory,
 }) {
   const inflow = transactions.filter(
     ({ type }) => type.toUpperCase() === "INCOME"
@@ -47,7 +46,7 @@ function ListTransaction({
     const y = document.querySelector("#transactions");
     if (styleDiv !== 0) {
       y.style.marginLeft = "72px";
-      y.style.width = "660px";
+      y.style.width = "44%";
     }
   };
 

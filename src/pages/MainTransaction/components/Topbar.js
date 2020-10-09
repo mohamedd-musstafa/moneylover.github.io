@@ -6,7 +6,7 @@ import avatar from "../../../assets/images/user.png";
 import Transaction from "./AddTransaction/Transaction";
 
 export default function Topbar({ setTimeShifted, setViewBy }) {
-  // const balance = localStorage.getItem("balance");
+  const balance = localStorage.getItem("balance");
   const firstName = localStorage.getItem("firstName");
   const [isNewTransactionOpen, setIsNewTransactionOpen] = useState(false);
   const [buttonClickBehavior, setButtonClickBehavior] = useState(false);
@@ -32,7 +32,7 @@ export default function Topbar({ setTimeShifted, setViewBy }) {
         </div>
         <div className="user-details">
           <p className="user-name"> {firstName} </p>
-          <p className="user-balance">{/* {balance} */}</p>
+          <p className="user-balance">{balance}</p>
         </div>
       </div>
       <div className="user-transactions-behavior">
@@ -65,10 +65,27 @@ export default function Topbar({ setTimeShifted, setViewBy }) {
             </button>
           )}
         </div>
-        <button type="button" className="search-transactions tooltip">
-          <img alt="Search Transaction" src={search} />
-          <span className="tooltiptext">Search for transaction</span>
-        </button>
+        <div className="search-box">
+          <form className="input-search-form">
+            <input type="text" placeholder="Search.." />
+          </form>
+        </div>
+        <div className="">
+          <button type="button" className="search-transactions tooltip">
+            <img alt="Search Transaction" src={search} />
+            <span className="tooltiptext">Search for transaction</span>
+          </button>
+        </div>
+        {/* <div className="search-box">
+          <input
+            type="text"
+            name=""
+            className="search-txt"
+            placeholder="Hello..."
+          />
+          <a href="#" className="search-btn">
+            <i className="far fa-search"></i>
+        </div> */}
         <button
           type="button"
           onClick={onOpenAddNewTransactionModal}

@@ -47,25 +47,38 @@ export default function MainTraction() {
   const changeDivTransactionDetail = () => {
     setStyleDiv();
     setTransactionIndex(undefined);
-    const hiddenTransactionDe = document.querySelector(
+    const hiddenTransactionDetail = document.querySelector(
       "#hidden-transaction-detail"
     );
-    if (hiddenTransactionDe.style.display === "none") {
-      hiddenTransactionDe.style.display = "block";
-    } else {
-      hiddenTransactionDe.style.display = "none";
-    }
     const transactionsStyle = document.querySelector("#transactions");
+
+    if (hiddenTransactionDetail.style.display === "none") {
+      hiddenTransactionDetail.style.display = "block";
+      hiddenTransactionDetail.style.width = "44%";
+    } else {
+      hiddenTransactionDetail.style.display = "none";
+    }
     if (styleDiv !== 0) {
-      transactionsStyle.style.margin = "50px auto 0px auto";
+      transactionsStyle.style.margin = "50px auto";
       transactionsStyle.style.width = "55%";
     }
   };
-  const renderTransactionDetail = (type) => {
+
+  const renderTransactionDetail = () => {
     const trans = transactions.find(({ id }) => transactionIndex === id);
     if (trans) {
       const { id, date, amount, description, category } = trans;
       const displayDate = moment(date).format("dddd, MMMM Do YYYY");
+      // console.log(category);
+      if (category === "RESTAURANT") {
+        var a = 1;
+      } else if (category === "SHOPPING") {
+        var b = 2;
+      } else if (category === "TRANSPORTATION") {
+        var c = 3;
+      }
+
+      // console.log(a, b, c);
 
       return (
         <div id="transaction-detail">
@@ -97,7 +110,7 @@ export default function MainTraction() {
               </button>
             </div>
           </div>
-          <hr className="line" />
+          <hr className="line-detail" />
           <div className="transactions-random-detail">
             <div className="icon-transactions-detail-div">
               <img
@@ -112,8 +125,7 @@ export default function MainTraction() {
               <hr className="line-10" />
               <div className="description-and-amount">
                 <span className="desc-transactions">{description}</span>{" "}
-                {/* <span className="transactions-bill-number-day">{amount} ₫</span> */}
-                {type ? (
+                {category === a || b || c ? (
                   <span className="transactions-bill-number-day-out">
                     {amount} ₫
                   </span>
@@ -141,16 +153,20 @@ export default function MainTraction() {
         transaction={transaction}
       />
       <Topbar setViewBy={setViewBy} setTimeShifted={setTimeShifted} />
-      <div id="transactions">
-        <TabTransaction
-          timeShifted={timeShifted}
-          setTimeShifted={setTimeShifted}
-          transactionIndex={transactionIndex}
-          setTransactionIndex={setTransactionIndex}
-          viewBy={viewBy}
-        />
+      <div className="changed-style">
+        <div id="transactions">
+          <TabTransaction
+            timeShifted={timeShifted}
+            setTimeShifted={setTimeShifted}
+            transactionIndex={transactionIndex}
+            setTransactionIndex={setTransactionIndex}
+            viewBy={viewBy}
+          />
+        </div>
+        <div style={{ display: "none" }} id="hidden-transaction-detail">
+          {renderTransactionDetail()}
+        </div>
       </div>
-      <div id="hidden-transaction-detail">{renderTransactionDetail()}</div>
       {/* <Details /> */}
     </div>
   );

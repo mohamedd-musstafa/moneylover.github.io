@@ -12,13 +12,22 @@ Modal.setAppElement("#root");
 
 const selector = ({ transactions }) => transactions;
 
-function Delete({ isOpen, onRequestClose, setTransactionIndex, id }) {
+function Delete({ isOpen, onRequestClose, setTransactionIndex, id, styleDiv }) {
   const dispatch = useDispatch();
   const transactions = useSelector(selector);
   const onDelete = (id) => () => {
     setTransactionIndex(undefined);
     dispatch(deleteTransaction(id));
     onRequestClose();
+    const transactionsStyle = document.querySelector("#transactions");
+    const hiddenTransactionDetail = document.querySelector(
+      "#hidden-transaction-detail"
+    );
+    if (styleDiv !== 0) {
+      transactionsStyle.style.margin = "50px auto 0px auto";
+      transactionsStyle.style.width = "55%";
+      hiddenTransactionDetail.style.display = "none";
+    }
   };
   return (
     <>

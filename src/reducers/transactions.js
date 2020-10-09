@@ -16,7 +16,7 @@ const addTransactionReducer = (state = [], action) => {
     case "EDIT_TRANSACTION": {
       const index = state.findIndex(({ id }) => id === action.payload.id);
 
-      if (index !== -1) {
+      if (index !== 0) {
         state[index] = action.payload;
         return [...state];
       }

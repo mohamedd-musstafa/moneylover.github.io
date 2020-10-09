@@ -51,7 +51,7 @@ const addTransaction = (type, category, amount, description, date) => async (
   try {
     const requestSource = axios.CancelToken.source();
 
-    await api(requestSource).post("/transactions/v1.0", {
+    const res = await api(requestSource).post("/transactions/v1.0", {
       type,
       category,
       amount,
@@ -62,6 +62,7 @@ const addTransaction = (type, category, amount, description, date) => async (
     dispatch({
       type: "ADD_TRANSACTION",
       payload: {
+        id: res.data.id,
         type,
         category,
         amount,
@@ -100,6 +101,7 @@ const editTransaction = (
     dispatch({
       type: "EDIT_TRANSACTION",
       payload: {
+        id,
         type,
         category,
         amount,
