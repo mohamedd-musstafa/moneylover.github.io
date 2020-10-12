@@ -1,5 +1,4 @@
 import React from "react";
-import "react-datepicker/dist/react-datepicker.css";
 import Modal from "react-modal";
 import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
 import "react-tabs/style/react-tabs.css";

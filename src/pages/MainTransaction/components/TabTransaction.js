@@ -53,6 +53,7 @@ function TabTransaction({
   transactionIndex,
   setTransactionIndex,
   viewBy,
+  isSearch,
 }) {
   const dispatch = useDispatch();
   const transactions = useSelector(selector);
@@ -133,45 +134,60 @@ function TabTransaction({
     };
   }, [timeShifted, transactions]);
 
-  return (
-    <Tabs tabSelected={tabSelected} onTabChange={onTabChange}>
-      <Panel
-        title={splitTransactions.lastTabMonthTimeText}
-        className="day-transactions-calendars"
-        targetTime={splitTransactions.lastTabMonthTime}
-      >
-        <ListTransaction
-          transactions={splitTransactions.lastTabMonthTransactions}
-          setTransactionIndex={setTransactionIndex}
-          viewBy={viewBy}
-        />
-      </Panel>
-      <Panel
-        title={splitTransactions.thisTabMonthTimeText}
-        className="last-month-transactions-calendars"
-        targetTime={splitTransactions.thisTabMonthTime}
-      >
-        <ListTransaction
-          transactions={splitTransactions.thisTabMonthTransactions}
-          setTransactionIndex={setTransactionIndex}
-          viewBy={viewBy}
-        />
-      </Panel>
-      {!transactionIndex ? (
-        <Panel
-          title={splitTransactions.nextTabMonthTimeText}
-          className="this-month-transactions-calendars"
-          targetTime={splitTransactions.nextTabMonthTime}
-        >
+  const renderPanel = () => {
+    if (isSearch) {
+      return (
+        <Panel title="Search Result" className="day-transactions-calendars">
           <ListTransaction
-            transactions={splitTransactions.nextTabMonthTransactions}
+            transactions={transactions}
             setTransactionIndex={setTransactionIndex}
             viewBy={viewBy}
           />
         </Panel>
-      ) : undefined}
-    </Tabs>
-  );
+      );
+    }
+    return (
+      <Tabs tabSelected={tabSelected} onTabChange={onTabChange}>
+        <Panel
+          title={splitTransactions.lastTabMonthTimeText}
+          className="day-transactions-calendars"
+          targetTime={splitTransactions.lastTabMonthTime}
+        >
+          <ListTransaction
+            transactions={splitTransactions.lastTabMonthTransactions}
+            setTransactionIndex={setTransactionIndex}
+            viewBy={viewBy}
+          />
+        </Panel>
+        <Panel
+          title={splitTransactions.thisTabMonthTimeText}
+          className="last-month-transactions-calendars"
+          targetTime={splitTransactions.thisTabMonthTime}
+        >
+          <ListTransaction
+            transactions={splitTransactions.thisTabMonthTransactions}
+            setTransactionIndex={setTransactionIndex}
+            viewBy={viewBy}
+          />
+        </Panel>
+        {!transactionIndex ? (
+          <Panel
+            title={splitTransactions.nextTabMonthTimeText}
+            className="this-month-transactions-calendars"
+            targetTime={splitTransactions.nextTabMonthTime}
+          >
+            <ListTransaction
+              transactions={splitTransactions.nextTabMonthTransactions}
+              setTransactionIndex={setTransactionIndex}
+              viewBy={viewBy}
+            />
+          </Panel>
+        ) : undefined}
+      </Tabs>
+    );
+  };
+
+  return renderPanel();
 }
 
 export default TabTransaction;

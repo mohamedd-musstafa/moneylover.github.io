@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/no-onchange */
 import React, { memo } from "react";
-import "react-datepicker/dist/react-datepicker.css";
+// import "react-datepicker/dist/react-datepicker.css";
 import Modal from "react-modal";
 import { useDispatch, useSelector } from "react-redux";
 import "react-tabs/style/react-tabs.css";

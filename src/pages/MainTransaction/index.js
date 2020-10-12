@@ -2,7 +2,6 @@ import moment from "moment";
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import BillIcon from "../../assets/images/bill.png";
-// import { deleteTransaction } from "../../actions/transactions";
 import closeIcon from "../../assets/images/close-icon.png";
 import FoodDrink from "../../assets/images/food-drink.png";
 import GiftIcon from "../../assets/images/gift.png";
@@ -40,6 +39,8 @@ export default function MainTraction() {
   const [transaction, setTransaction] = useState(undefined);
   const [viewBy, setViewBy] = useState("Category");
   const [styleDiv, setStyleDiv] = useState();
+  const [isSearch, setIsSearch] = useState(false);
+
   const onEdit = (tran) => () => {
     setIsEditTransactionOpen(true);
     setTransaction(tran);
@@ -77,9 +78,6 @@ export default function MainTraction() {
       } else if (category === "TRANSPORTATION") {
         var c = 3;
       }
-
-      // console.log(a, b, c);
-
       return (
         <div id="transaction-detail">
           <div className="top-wrap-detail">
@@ -152,7 +150,11 @@ export default function MainTraction() {
         type="edit"
         transaction={transaction}
       />
-      <Topbar setViewBy={setViewBy} setTimeShifted={setTimeShifted} />
+      <Topbar
+        setViewBy={setViewBy}
+        setTimeShifted={setTimeShifted}
+        setIsSearch={setIsSearch}
+      />
       <div className="changed-style">
         <div id="transactions">
           <TabTransaction
@@ -161,6 +163,7 @@ export default function MainTraction() {
             transactionIndex={transactionIndex}
             setTransactionIndex={setTransactionIndex}
             viewBy={viewBy}
+            isSearch={isSearch}
           />
         </div>
         <div style={{ display: "none" }} id="hidden-transaction-detail">

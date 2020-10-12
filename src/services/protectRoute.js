@@ -6,12 +6,20 @@ const checkAuth = () => {
   const token =
     localStorage.getItem("token") &&
     localStorage.getItem("token").replace("Bearer ", "");
-  if (token && jwtDecode(token).exp < Date.now() / 1000) {
+  if (token) {
+    if (jwtDecode(token).exp > Date.now() / 1000) {
+      console.log(1);
+
+      return true;
+    }
+    console.log(2);
+
     localStorage.clear();
     return false;
   }
+  console.log(3);
 
-  return true;
+  return false;
 };
 
 const ProtectedRoute = ({ component: Component, ...rest }) => (

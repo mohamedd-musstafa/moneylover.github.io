@@ -1,15 +1,14 @@
 /* eslint-disable jsx-a11y/no-onchange */
-import DateFnsUtils from "@date-io/date-fns";
+import MomentUtils from "@date-io/moment";
+import { createMuiTheme, ThemeProvider } from "@material-ui/core";
 import Grid from "@material-ui/core/Grid";
 import {
   KeyboardDatePicker,
   MuiPickersUtilsProvider,
 } from "@material-ui/pickers";
 // import Calendar from "react-calendar";
-import "date-fns";
 import moment from "moment";
 import React, { memo, useEffect, useState } from "react";
-import "react-datepicker/dist/react-datepicker.css";
 import Modal from "react-modal";
 import { useDispatch } from "react-redux";
 import "react-tabs/style/react-tabs.css";
@@ -17,21 +16,28 @@ import {
   addTransaction,
   editTransaction,
 } from "../../../../actions/transactions";
-import LeftArrowIcon from "../../../../assets/images/left-arrow.png";
+import CloseIcon from "../../../../assets/images/close-icon.png";
 import Category from "./Category";
-// import DateForm from "./Date/index";
 import "./TransactionStyle.css";
+
+const datePickerTheme = createMuiTheme({
+  overrides: {
+    MuiDialogActions: {
+      root: {
+        display: "none",
+      },
+    },
+    MuiPickersSlideTransition: {
+      transitionContainer: {
+        marginBottom: 12,
+      },
+    },
+  },
+});
 
 Modal.setAppElement("#root");
 
-function Transaction({
-  type,
-  transaction,
-  isOpen,
-  onRequestClose,
-  transactionIndex,
-  setTransactionIndex,
-}) {
+function Transaction({ type, transaction, isOpen, onRequestClose }) {
   const style = {
     justifyContent: "space-between",
     display: "flex",
@@ -49,7 +55,7 @@ function Transaction({
   const [categoryText, setCategoryText] = useState("");
   const [date, setDate] = useState(new Date());
   const dispatch = useDispatch();
-  // document.querySelector("#date-picker-dialog-label").innerHTML = "Date";
+  const [isDatePickerOpen, setIsDatePickerOpen] = useState(false);
   const onSubmit = (e) => {
     e.preventDefault();
     if (type === "edit") {
@@ -168,33 +174,49 @@ function Transaction({
             {" "}
             {/* <DateForm /> */}
             <div style={style}>
-              {/* <DatePicker
-                className="btn-datepicker"
-                selected={date}
-                onChange={setDate}
-              /> */}
               <div className="datepicker-dialog">
-                <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                  <Grid>
-                    <KeyboardDatePicker
-                      margin="normal"
-                      id="date-picker-dialog"
-                      label="Date"
-                      format="MM/dd/yyyy"
-                      value={date}
-                      onChange={setDate}
-                      KeyboardButtonProps={{
-                        "aria-label": "change date",
-                      }}
-                    />
-                  </Grid>
-                </MuiPickersUtilsProvider>
+                <ThemeProvider theme={datePickerTheme}>
+                  <MuiPickersUtilsProvider utils={MomentUtils}>
+                    <Grid>
+                      <KeyboardDatePicker
+                        ToolbarComponent={() => {
+                          const currentDate = moment(date).format(
+                            "dddd, MMMM Do YYYY"
+                          );
+                          return (
+                            <div className="date-picker-toolbar">
+                              <button
+                                type="button"
+                                onClick={() => setIsDatePickerOpen(false)}
+                                className="date-picker-button"
+                              >
+                                <img src={CloseIcon} alt="Close" />
+                              </button>
+                              <div className="date-picker-date">
+                                {currentDate}
+                              </div>
+                            </div>
+                          );
+                        }}
+                        margin="normal"
+                        id="date-picker-dialog"
+                        label="Date"
+                        format="MM/dd/yyyy"
+                        value={date}
+                        onChange={setDate}
+                        KeyboardButtonProps={{
+                          "aria-label": "change date",
+                        }}
+                        open={isDatePickerOpen}
+                        onOpen={() => setIsDatePickerOpen(true)}
+                        onClose={() => setIsDatePickerOpen(false)}
+                        autoOk
+                        showTodayButton
+                      />
+                    </Grid>
+                  </MuiPickersUtilsProvider>
+                </ThemeProvider>
               </div>
-              {/* <img
-                alt="icon"
-                className="left-arrow-icon2"
-                src={LeftArrowIcon}
-              /> */}
               <label className="label-note">Note</label>
               <input
                 className="input-description"

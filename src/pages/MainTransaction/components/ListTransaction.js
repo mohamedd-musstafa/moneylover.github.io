@@ -21,11 +21,7 @@ const categoryImages = {
   INVESTMENT: SellIcon,
 };
 
-function ListTransaction({
-  transactions,
-  setTransactionIndex,
-  viewBy,
-}) {
+function ListTransaction({ transactions, setTransactionIndex, viewBy }) {
   const inflow = transactions.filter(
     ({ type }) => type.toUpperCase() === "INCOME"
   );

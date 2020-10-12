@@ -1,5 +1,26 @@
 import axios from "axios";
 import moment from "moment";
+import Fuse from "fuse.js";
+
+const searchTransaction = (pattern) => async (dispatch, getState) => {
+  try {
+    const options = {
+      keys: ["type", "category", "description"],
+    };
+    const list = getState().transactions;
+
+    const fuse = new Fuse(list, options);
+    const search = fuse.search(pattern).map(({ item }) => item);
+
+    dispatch({
+      type: "SEARCH_TRANSACTION",
+      payload: search,
+    });
+  } catch (e) {
+    console.error(e);
+    return undefined;
+  }
+};
 
 const listTransaction = () => async (dispatch, _getState, api) => {
   try {
@@ -136,4 +157,10 @@ const deleteTransaction = (id) => async (dispatch, _getState, api) => {
   }
 };
 
-export { listTransaction, addTransaction, editTransaction, deleteTransaction };
+export {
+  searchTransaction,
+  listTransaction,
+  addTransaction,
+  editTransaction,
+  deleteTransaction,
+};

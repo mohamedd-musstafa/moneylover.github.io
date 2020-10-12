@@ -515,6 +515,10 @@ li {
   border-radius: 5px;
 }
 
+.ul-type-transaction {
+  padding-left: 0;
+}
+
 .MuiFormControl-marginNormal {
   margin: 0 !important;
 }
@@ -574,3 +578,7 @@ li {
 .MuiSvgIcon-root {
   color: #ffffff !important;
 }
+
+/* .ReactModal__Body--open {
+  padding-right: 0 !important;
+} */
