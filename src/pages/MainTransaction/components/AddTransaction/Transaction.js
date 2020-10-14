@@ -56,6 +56,8 @@ function Transaction({ type, transaction, isOpen, onRequestClose }) {
   const [date, setDate] = useState(new Date());
   const dispatch = useDispatch();
   const [isDatePickerOpen, setIsDatePickerOpen] = useState(false);
+
+  // document.querySelector("#date-picker-dialog-label").innerHTML = "Date";
   const onSubmit = (e) => {
     e.preventDefault();
     if (type === "edit") {
@@ -171,8 +173,6 @@ function Transaction({ type, transaction, isOpen, onRequestClose }) {
             onChooseTransactionType={onChooseTransactionType}
           />
           <div className="select-options-datepicker">
-            {" "}
-            {/* <DateForm /> */}
             <div style={style}>
               <div className="datepicker-dialog">
                 <ThemeProvider theme={datePickerTheme}>
@@ -183,6 +183,7 @@ function Transaction({ type, transaction, isOpen, onRequestClose }) {
                           const currentDate = moment(date).format(
                             "dddd, MMMM Do YYYY"
                           );
+
                           return (
                             <div className="date-picker-toolbar">
                               <button

@@ -558,8 +558,10 @@ li {
   height: 23px !important; */
 }
 .MuiPickersBasePicker-pickerView {
+  display: block !important;
   max-width: 100% !important;
-  padding: 30px 30px 40px 30px !important;
+  padding: 0 30px 0 30px !important;
+  min-height: 450px !important;
 }
 .MuiPickersCalendarHeader-dayLabel {
   color: #ffffff !important;
@@ -574,9 +576,72 @@ li {
   cursor: pointer !important;
   background: rgba(61, 117, 62, 0.2) !important;
 }
+.MuiPickersCalendar-week {
+  margin-top: 30px !important;
+  justify-content: space-between !important;
+}
 
 .MuiSvgIcon-root {
   color: #ffffff !important;
+}
+.MuiPickersCalendarHeader-switchHeader {
+  margin: 0 !important;
+}
+.MuiPickersCalendarHeader-daysHeader {
+  margin: 30px 0 0 0 !important;
+  justify-content: space-between !important;
+}
+.MuiPickersSlideTransition-transitionContainer {
+  margin: 0 !important;
+}
+
+.date-picker-button {
+  border: 0 !important;
+  background: #1c1c1d !important;
+}
+.date-picker-button:focus {
+  outline: none !important;
+}
+.date-picker-button:hover {
+  cursor: pointer;
+}
+.date-picker-toolbar {
+  display: flex;
+  justify-content: space-between;
+  padding: 30px 30px 30px 30px;
+}
+.line-datepicker {
+  /* width: 623px; */
+  border: 1px solid rgba(196, 196, 196, 0.5);
+  transform: rotate(-0.06deg);
+}
+.group-button-and-text {
+  display: flex;
+}
+
+.date-picker-cancel {
+  height: 22px;
+  width: 22px;
+  color: #c4c4c4;
+  border: 0;
+  padding: 0;
+}
+
+.date-picker-cancel :hover {
+  cursor: pointer;
+}
+
+.date-picker-text {
+  margin-left: 30px;
+  font-weight: bold;
+  /* font-size: 20px; */
+  color: #ffffff;
+}
+
+.date-picker-date {
+  font-weight: bold;
+  /* font-size: 20px; */
+  color: #ffffff;
 }
 
 /* .ReactModal__Body--open {

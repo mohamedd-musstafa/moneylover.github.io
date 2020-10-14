@@ -1,6 +1,6 @@
-import jwtDecode from "jwt-decode";
 import React from "react";
-import { Redirect, Route } from "react-router-dom";
+import { Route, Redirect } from "react-router-dom";
+import jwtDecode from "jwt-decode";
 
 const checkAuth = () => {
   const token =
@@ -9,17 +9,14 @@ const checkAuth = () => {
   if (token) {
     if (jwtDecode(token).exp > Date.now() / 1000) {
       console.log(1);
-
       return true;
     }
     console.log(2);
-
     localStorage.clear();
     return false;
   }
   console.log(3);
-
-  return false;
+  return true;
 };
 
 const ProtectedRoute = ({ component: Component, ...rest }) => (

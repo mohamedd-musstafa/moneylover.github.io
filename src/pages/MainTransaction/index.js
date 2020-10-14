@@ -14,6 +14,7 @@ import Delete from "./components/Delete";
 import TabTransaction from "./components/TabTransaction";
 import Topbar from "./components/Topbar";
 import "./transaction.css";
+import Spinner from "../../components/spinner";
 // import Details from "./components/Details";
 
 const selector = ({ transactions }) => transactions;
@@ -125,11 +126,11 @@ export default function MainTraction() {
                 <span className="desc-transactions">{description}</span>{" "}
                 {category === a || b || c ? (
                   <span className="transactions-bill-number-day-out">
-                    {amount} ₫
+                    {new Intl.NumberFormat().format(amount)} ₫
                   </span>
                 ) : (
                   <span className="transactions-bill-number-day-in">
-                    {amount} ₫
+                    {new Intl.NumberFormat().format(amount)} ₫
                   </span>
                 )}
               </div>
@@ -171,6 +172,7 @@ export default function MainTraction() {
         </div>
       </div>
       {/* <Details /> */}
+    {/* <Spinner /> */}
     </div>
   );
 }

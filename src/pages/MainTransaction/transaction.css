@@ -42,8 +42,8 @@
 }
 .user-balance {
   margin: 0;
-  font-weight: bold;
   font-size: 14px;
+  color: #000000;
 }
 .user-transactions-behavior {
   width: 777px;
@@ -145,6 +145,41 @@
   font-weight: bold;
 } */
 
+.input-search-form {
+  border-radius: 5px;
+  background: #3d753e;
+  position: relative;
+  margin-right: 20px;
+}
+.input-search-form-input {
+  width: 209px;
+  height: 30px;
+  border-radius: 5px;
+  padding-left: 30px;
+}
+::placeholder {
+  width: 145px;
+  height: 21px;
+  color: #979797;
+  font-size: 14px;
+}
+.icon-search-box {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  color: rgba(147, 147, 147, 0.5);
+  z-index: 1;
+  height: 12px;
+  width: 12px;
+}
+.icon-close-search-box {
+  position: absolute;
+  z-index: 1;
+  top: 8px;
+  left: 213px;
+  width: 16px;
+  height: 16px;
+}
 .add-transaction {
   background: #3d753e;
   border-radius: 5px;
@@ -164,6 +199,7 @@
   border-radius: 20px;
   margin: 0 auto;
   margin-top: 50px;
+  margin-bottom: 100px;
 }
 .transactions:focus {
   outline: none;
@@ -362,19 +398,36 @@
 .tooltip .tooltiptext {
   background: #c4c4c4;
   border-radius: 5px;
-  width: 111px;
+  /* width: 111px; */
   visibility: hidden;
   padding: 5px 0;
   position: absolute;
-  top: 140%;
-  left: 69%;
-  margin-left: -60px;
+  top: 50px;
+  left: -8px;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 14px;
+}
+
+.tooltiptext-today {
+  background: #c4c4c4;
+  visibility: hidden;
+  border-radius: 5px;
+  padding: 5px 0;
+  position: absolute;
+  top: 50px;
+  right: 240px;
   font-weight: normal;
   font-size: 12px;
   line-height: 14px;
 }
 
 .tooltip:hover .tooltiptext {
+  outline: none;
+  visibility: visible;
+}
+
+.tooltip-today:hover .tooltiptext-today {
   outline: none;
   visibility: visible;
 }

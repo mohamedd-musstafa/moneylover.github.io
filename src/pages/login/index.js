@@ -8,26 +8,9 @@ import eyeSlashIcon from "../../assets/images/eyeslash.png";
 import "./styleLogin.css";
 
 export default function Login() {
-  // const { userData, setUserData } = useState({
-  //   firstName: "",
-  //   lastName: "",
-  //   id: "",
-  //   email: "",
-  //   balance: "",
-  //   createdAt: "",
-  //   updatedAt: "",
-  // });
   const history = useHistory();
   const { register, handleSubmit, errors } = useForm();
   const [errorsMessage, setErrorMessage] = useState([]);
-  // const firstName = localStorage.getItem("firstName");
-  // const lastName = localStorage.getItem("lastName");
-  // const id = localStorage.getItem("id");
-  // const email = localStorage.getItem("email");
-  // const balance = localStorage.getItem("balance");
-  // const createdAt = localStorage.getItem("createdAt");
-  // const updatedAt = localStorage.getItem("updatedAt");
-  // const token = localStorage.getItem("token");
   const [passwordShown, setPasswordShown] = useState(false);
   const togglePasswordVisibility = () => {
     setPasswordShown(!passwordShown === true);
@@ -42,22 +25,8 @@ export default function Login() {
           // handle success here
           localStorage.setItem("token", response.data.token.accessToken);
           // console.log(token);
-          localStorage.setItem(
-            "firstName",
-            response.data.user.firstName,
-            "lastName",
-            response.data.user.lastName,
-            "id",
-            response.data.user.id,
-            "email",
-            response.data.user.email,
-            "balance",
-            response.data.user.balance,
-            "createdAt",
-            response.data.user.createdAt,
-            "updatedAt",
-            response.data.user.updatedAt
-          );
+          localStorage.setItem("firstName", response.data.user.firstName);
+          localStorage.setItem("balance", response.data.user.balance);
           // if (typeof localStorage.getItem("token") === "undefined") {
           //   console.log("Token does not exist");
           // } else {

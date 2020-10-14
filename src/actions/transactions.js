@@ -7,7 +7,7 @@ const searchTransaction = (pattern) => async (dispatch, getState) => {
     const options = {
       keys: ["type", "category", "description"],
     };
-    const list = getState().transactions;
+    const list = getState().transaction;
 
     const fuse = new Fuse(list, options);
     const search = fuse.search(pattern).map(({ item }) => item);
@@ -61,14 +61,6 @@ const addTransaction = (type, category, amount, description, date) => async (
   _getState,
   api
 ) => {
-  console.log(
-    "addTransaction -> type, category, amount, description, date",
-    type,
-    category,
-    amount,
-    description,
-    date
-  );
   try {
     const requestSource = axios.CancelToken.source();
 
@@ -108,7 +100,6 @@ const editTransaction = (
   date
 ) => async (dispatch, _getState, api) => {
   try {
-    console.log(id, type, category, amount, description, date);
     const requestSource = axios.CancelToken.source();
 
     await api(requestSource).put(`/transactions/v1.0/${id}`, {
@@ -141,9 +132,11 @@ const editTransaction = (
 const deleteTransaction = (id) => async (dispatch, _getState, api) => {
   try {
     const requestSource = axios.CancelToken.source();
-    const test = await api(requestSource).delete(`/transactions/v1.0/${id}`);
+    const delTransaction = await api(requestSource).delete(
+      `/transactions/v1.0/${id}`
+    );
 
-    console.log(test);
+    console.log(delTransaction);
 
     dispatch({
       type: "DELETE_TRANSACTION",

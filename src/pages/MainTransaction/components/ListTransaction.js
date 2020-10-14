@@ -72,14 +72,16 @@ function ListTransaction({ transactions, setTransactionIndex, viewBy }) {
                 src={categoryImages[category]}
               />
               <div>
-                <span className="name-transactions">{category}</span>
+                <span className="name-transactions">
+                  {category.charAt(0).toUpperCase() + category.slice(1)}
+                </span>
                 <span className="count-transactions">
                   {categories[category].length} Transaction(s)
                 </span>
               </div>
             </div>
             <span className="transactions-bill-number">
-              {totalByCategory} ₫
+              {new Intl.NumberFormat().format(totalByCategory)} ₫
             </span>
           </div>
           <hr className="line-3" />
@@ -109,11 +111,11 @@ function ListTransaction({ transactions, setTransactionIndex, viewBy }) {
                     </div>
                     {type === "EXPENSE" ? (
                       <span className="transactions-bill-number-day-out">
-                        {amount} ₫
+                        {new Intl.NumberFormat().format(amount)} ₫
                       </span>
                     ) : (
                       <span className="transactions-bill-number-day-in">
-                        {amount} ₫
+                        {new Intl.NumberFormat().format(amount)} ₫
                       </span>
                     )}
                   </div>
@@ -159,7 +161,7 @@ function ListTransaction({ transactions, setTransactionIndex, viewBy }) {
                   <span className="day-transactions">{displayDate}</span>
                 </div>
                 <span className="transactions-bill-number-day-total">
-                  {totalInOutFlow} ₫
+                  {new Intl.NumberFormat().format(totalInOutFlow)} ₫
                 </span>
               </div>
               <hr className="line-3" />
@@ -185,11 +187,11 @@ function ListTransaction({ transactions, setTransactionIndex, viewBy }) {
                       </div>
                       {type === "EXPENSE" ? (
                         <span className="transactions-bill-number-day-out">
-                          {amount} ₫
+                          {new Intl.NumberFormat().format(amount)} ₫
                         </span>
                       ) : (
                         <span className="transactions-bill-number-day-in">
-                          {amount} ₫
+                          {new Intl.NumberFormat().format(amount)} ₫
                         </span>
                       )}
                     </div>
@@ -216,6 +218,7 @@ function ListTransaction({ transactions, setTransactionIndex, viewBy }) {
   };
 
   const renderTransactions = () => {
+    const balanceAfter = totalInflow - totalOutflow;
     if (transactions.length === 0) {
       return <NoTransaction />;
     }
@@ -224,16 +227,20 @@ function ListTransaction({ transactions, setTransactionIndex, viewBy }) {
         <div className="inflow-and-outflow">
           <div className="inflow">
             <span className="inflow-text">Inflow</span>
-            <span className="inflow-number">{totalInflow}</span>
+            <span className="inflow-number">
+              {new Intl.NumberFormat().format(totalInflow)}
+            </span>
           </div>
           <div className="outflow">
             <span className="outflow-text">Outflow</span>
-            <span className="outflow-number">-{totalOutflow}</span>
+            <span className="outflow-number">
+              -{new Intl.NumberFormat().format(totalOutflow)}
+            </span>
           </div>
           <div className="balance">
             <hr className="line-2" />
             <div className="balance-after-flow">
-              {totalInflow - totalOutflow}
+              {new Intl.NumberFormat().format(balanceAfter)}
             </div>
           </div>
         </div>

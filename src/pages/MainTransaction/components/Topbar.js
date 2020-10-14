@@ -6,6 +6,8 @@ import category from "../../../assets/images/category.png";
 import avatar from "../../../assets/images/user.png";
 import Transaction from "./AddTransaction/Transaction";
 import { searchTransaction } from "../../../actions/transactions";
+import searchBoxIcon from "../../../assets/images/search-box.png";
+import closeSearchBoxIcon from "../../../assets/images/close-search-box.png";
 
 export default function Topbar({ setTimeShifted, setViewBy, setIsSearch }) {
   const dispatch = useDispatch();
@@ -13,6 +15,13 @@ export default function Topbar({ setTimeShifted, setViewBy, setIsSearch }) {
   const firstName = localStorage.getItem("firstName");
   const [isNewTransactionOpen, setIsNewTransactionOpen] = useState(false);
   const [buttonClickBehavior, setButtonClickBehavior] = useState(false);
+  const [searchToggleBehavior, setSearchToggleBehavior] = useState(false);
+  const onClickSearch = () => {
+    setSearchToggleBehavior(searchToggleBehavior !== true);
+  };
+  const onClearSearch = () => {
+    document.querySelector(".input-search-form-input").reset();
+  };
   const onChangeButtonViewBy = () => {
     setButtonClickBehavior(buttonClickBehavior !== true);
   };
@@ -61,9 +70,9 @@ export default function Topbar({ setTimeShifted, setViewBy, setIsSearch }) {
         <button
           onClick={onJumpToday}
           type="button"
-          className="view-today tooltip"
+          className="view-today tooltip-today"
         >
-          <span className="tooltiptext">Jump to today</span>
+          <span className="tooltiptext-today">Jump to today</span>
           TODAY
         </button>
         <div onClick={onChangeButtonViewBy} className="button-change-view">
@@ -87,20 +96,34 @@ export default function Topbar({ setTimeShifted, setViewBy, setIsSearch }) {
             </button>
           )}
         </div>
-        <div className="search-box">
+        {/* <div className="search-box"> */}
+        {searchToggleBehavior ? (
           <form className="input-search-form" onSubmit={onSearch}>
+            <img alt=" icon" className="icon-search-box" src={searchBoxIcon} />
             <input
+              className="input-search-form-input"
               type="text"
               placeholder="Search.."
               value={pattern}
               onChange={onPatternChange}
+              // onClick={onClearSearch}
             />
-            <button type="submit" className="search-transactions tooltip">
-              <img alt="Search Transaction" src={search} />
-              <span className="tooltiptext">Search for transaction</span>
-            </button>
+            <div onClick={onClickSearch} className="">
+              <img
+                alt="icon"
+                className="icon-close-search-box"
+                src={closeSearchBoxIcon}
+              />
+            </div>
           </form>
-        </div>
+        ) : (
+          <div onClick={onClickSearch} className="search-transactions tooltip">
+            <img alt="Search Transaction" src={search} />
+            <span className="tooltiptext">Search for transaction</span>
+          </div>
+        )}
+
+        {/* </div> */}
         <button
           type="button"
           onClick={onOpenAddNewTransactionModal}
